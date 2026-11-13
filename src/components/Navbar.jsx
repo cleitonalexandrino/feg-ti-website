@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, PhoneCall } from 'lucide-react';
+import { Menu, X, ArrowRight, PhoneCall, Lock } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 export default function Navbar({ onOpenQuote }) {
+  const { settings, setIsAdminOpen } = useAdmin();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -32,7 +34,7 @@ export default function Navbar({ onOpenQuote }) {
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent('Olá! Gostaria de falar com um consultor da F&G TI sobre soluções e cotações corporativas.');
-    window.open(`https://wa.me/5511957109304?text=${text}`, '_blank');
+    window.open(`https://wa.me/${settings.phone}?text=${text}`, '_blank');
   };
 
   const handleNavClick = (href) => {
@@ -45,7 +47,7 @@ export default function Navbar({ onOpenQuote }) {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
           ? 'bg-[#060A11]/95 backdrop-blur-md border-b border-white/[0.08] shadow-2xl py-2.5 sm:py-3' 
           : 'bg-gradient-to-b from-[#060A11]/90 to-transparent py-3 sm:py-5'
@@ -98,10 +100,10 @@ export default function Navbar({ onOpenQuote }) {
               <button
                 onClick={handleWhatsAppDirect}
                 className="hidden md:inline-flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold text-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981]/20 border border-[#10B981]/30 transition-all hover:scale-105 cursor-pointer"
-                title="Atendimento via WhatsApp: +55 11 95710-9304"
+                title={`Atendimento via WhatsApp: ${settings.displayPhone}`}
               >
                 <PhoneCall className="w-3.5 h-3.5 text-[#10B981]" />
-                <span className="hidden lg:inline">(11) 95710-9304</span>
+                <span className="hidden lg:inline">{settings.displayPhone}</span>
                 <span className="lg:hidden">WhatsApp</span>
               </button>
 
@@ -142,9 +144,16 @@ export default function Navbar({ onOpenQuote }) {
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Menu de Navegação
               </span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                F&G TI B2B
-              </span>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsAdminOpen(true);
+                }}
+                className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/30 flex items-center gap-1 cursor-pointer"
+              >
+                <Lock className="w-3 h-3" />
+                <span>Painel Admin</span>
+              </button>
             </div>
 
             <nav className="flex flex-col space-y-1">
@@ -169,7 +178,7 @@ export default function Navbar({ onOpenQuote }) {
                 className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/30 active:scale-98 transition-transform cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4 text-[#10B981]" />
-                <span>WhatsApp Oficial: (11) 95710-9304</span>
+                <span>WhatsApp: {settings.displayPhone}</span>
               </button>
 
               <button

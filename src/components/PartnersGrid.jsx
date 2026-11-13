@@ -1,22 +1,23 @@
 import React, { useState, useMemo } from 'react';
-import { partnerCategories, allPartners } from '../data/partnersData';
-import { Search, Building2, ArrowRight, Image as ImageIcon, Sparkles } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
+import { Search, Building2, ArrowRight, Image as ImageIcon, Sparkles, Plus } from 'lucide-react';
 
 export default function PartnersGrid({ onSelectPartner }) {
+  const { partners, categories, setIsAdminOpen } = useAdmin();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [showInfographic, setShowInfographic] = useState(false);
 
-  // Filter partners
+  // Filter partners dynamically
   const filteredPartners = useMemo(() => {
-    return allPartners.filter((partner) => {
+    return partners.filter((partner) => {
       const matchesCategory = selectedCategory === 'all' || partner.category === selectedCategory;
       const matchesSearch = partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             partner.desc.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             partner.badge.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchTerm]);
+  }, [partners, selectedCategory, searchTerm]);
 
   return (
     <section id="fabricantes" className="py-16 sm:py-24 lg:py-28 relative bg-[#060A11] border-t border-white/[0.08]">
@@ -60,19 +61,31 @@ export default function PartnersGrid({ onSelectPartner }) {
               />
             </div>
 
-            {/* Toggle Original Infographic Modal */}
-            <button
-              onClick={() => setShowInfographic(!showInfographic)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 bg-[#0D1422] border border-white/10 hover:text-white hover:border-slate-600 transition-all cursor-pointer"
-            >
-              <ImageIcon className="w-4 h-4 text-[#F97316] shrink-0" />
-              <span>{showInfographic ? 'Ocultar Infográfico Oficial' : 'Ver Infográfico Oficial de Fabricantes'}</span>
-            </button>
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Botão rápido para Admin incluir mais marcas */}
+              <button
+                onClick={() => setIsAdminOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#F97316]/20 hover:bg-[#F97316]/30 border border-[#F97316]/40 transition-all cursor-pointer"
+                title="Cadastrar novo fabricante"
+              >
+                <Plus className="w-4 h-4 text-[#F97316]" />
+                <span>Incluir Fabricante</span>
+              </button>
+
+              {/* Toggle Original Infographic Modal */}
+              <button
+                onClick={() => setShowInfographic(!showInfographic)}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 bg-[#0D1422] border border-white/10 hover:text-white hover:border-slate-600 transition-all cursor-pointer"
+              >
+                <ImageIcon className="w-4 h-4 text-[#F97316] shrink-0" />
+                <span>{showInfographic ? 'Ocultar Infográfico' : 'Infográfico Oficial'}</span>
+              </button>
+            </div>
           </div>
 
           {/* Category Filter Tabs */}
           <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 no-scrollbar px-1">
-            {partnerCategories.map((cat) => {
+            {categories.map((cat) => {
               const isSelected = selectedCategory === cat.id;
               return (
                 <button
@@ -136,7 +149,7 @@ export default function PartnersGrid({ onSelectPartner }) {
                 </p>
               </div>
 
-              {/* Bottom Metadata: Domain Tag Left, Cotar Action Link Right */}
+              {/* Bottom Metadata */}
               <div className="mt-3.5 pt-2.5 border-t border-white/[0.08] flex items-center justify-between">
                 <span className="text-[10px] sm:text-[11px] font-medium text-[#64748B] uppercase">
                   {partner.category}
@@ -159,16 +172,24 @@ export default function PartnersGrid({ onSelectPartner }) {
             <p className="text-xs sm:text-sm text-[#94A3B8]">
               Nenhum fabricante encontrado para a busca "{searchTerm}".
             </p>
-            <button
-              onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}
-              className="text-xs font-bold text-[#F97316] hover:underline cursor-pointer"
-            >
-              Limpar filtros e exibir todos os fabricantes
-            </button>
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}
+                className="text-xs font-bold text-[#F97316] hover:underline cursor-pointer"
+              >
+                Limpar filtros
+              </button>
+              <button
+                onClick={() => setIsAdminOpen(true)}
+                className="text-xs font-bold text-blue-400 hover:underline cursor-pointer"
+              >
+                + Incluir esta marca agora
+              </button>
+            </div>
           </div>
         )}
 
-        {/* Bottom Fallback Banner for Unrepresented Brands */}
+        {/* Bottom Fallback Banner */}
         <div className="rounded-2xl bg-[#0D1422] border border-white/[0.08] p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-bold text-white">

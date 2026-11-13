@@ -1,8 +1,10 @@
 import React from 'react';
-import { PhoneCall, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
+import { PhoneCall, MapPin, ExternalLink, ShieldCheck, Lock } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { settings, setIsAdminOpen } = useAdmin();
 
   return (
     <footer className="bg-[#04070D] border-t border-white/[0.08] text-[#94A3B8] text-xs sm:text-sm">
@@ -32,19 +34,29 @@ export default function Footer() {
             </div>
 
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed max-w-sm">
-              <strong className="text-white">F&G TECNOLOGIA DA INFORMACAO LTDA</strong>. Entendemos seu negócio. Conectamos soluções. Fornecimento corporativo de hardware, infraestrutura de rede, cibersegurança, automação e licenciamento com os maiores fabricantes globais.
+              <strong className="text-white">F&G TECNOLOGIA DA INFORMACAO LTDA</strong>. {settings.tagline} Fornecimento corporativo de hardware, infraestrutura de rede, cibersegurança, automação e licenciamento com os maiores fabricantes globais.
             </p>
 
-            <div className="pt-1">
+            <div className="pt-1 flex flex-wrap items-center gap-3">
               <a
-                href="https://www.linkedin.com/company/fegtiltda/posts/"
+                href={settings.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0077B5]/15 border border-[#0077B5]/30 text-xs font-semibold text-[#0077B5] hover:bg-[#0077B5]/25 transition-all"
               >
-                <span>Acompanhe a F&G TI no LinkedIn</span>
+                <span>LinkedIn F&G TI</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
+
+              {/* Botão de Acesso Administrativo para o Cliente */}
+              <button
+                onClick={() => setIsAdminOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer"
+                title="Acessar painel para editar produtos, marcas e informações"
+              >
+                <Lock className="w-3.5 h-3.5 text-[#F97316]" />
+                <span>Área Restrita / Admin</span>
+              </button>
             </div>
           </div>
 
@@ -87,13 +99,13 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs">
               <a 
-                href="https://wa.me/5511957109304"
+                href={`https://wa.me/${settings.phone}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-[#10B981] hover:text-emerald-300 transition-colors py-1"
               >
                 <PhoneCall className="w-4 h-4 shrink-0" />
-                <span>WhatsApp: +55 11 95710-9304</span>
+                <span>WhatsApp: {settings.displayPhone}</span>
               </a>
 
               <div className="flex items-start gap-2 text-[#94A3B8]">

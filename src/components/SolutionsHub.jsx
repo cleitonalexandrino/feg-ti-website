@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { solutionsData } from '../data/solutionsData';
+import { useAdmin } from '../context/AdminContext';
 import { 
   Laptop, 
   Barcode, 
@@ -10,9 +10,10 @@ import {
   Layers, 
   ArrowRight, 
   CheckCircle2, 
-  Building2,
+  Building2, 
   ExternalLink,
-  Layers3
+  Layers3,
+  Edit
 } from 'lucide-react';
 
 const iconMap = {
@@ -26,9 +27,10 @@ const iconMap = {
 };
 
 export default function SolutionsHub({ onSelectCategory }) {
+  const { solutions, setIsAdminOpen } = useAdmin();
   const [activeTab, setActiveTab] = useState('devices');
 
-  const currentSolution = solutionsData.find(s => s.id === activeTab) || solutionsData[0];
+  const currentSolution = solutions.find(s => s.id === activeTab) || solutions[0];
   const CurrentIcon = iconMap[currentSolution.icon] || Laptop;
 
   return (
@@ -55,7 +57,7 @@ export default function SolutionsHub({ onSelectCategory }) {
 
         {/* Horizontal Category Pill Bar */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 overflow-x-auto pb-3 sm:pb-4 no-scrollbar justify-start xl:justify-center mb-6 sm:mb-10 px-1">
-          {solutionsData.map((item) => {
+          {solutions.map((item) => {
             const Icon = iconMap[item.icon] || Laptop;
             const isSelected = activeTab === item.id;
             return (
@@ -83,18 +85,29 @@ export default function SolutionsHub({ onSelectCategory }) {
             {/* Left Column: Pillar Detail & Homologated Equipment */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-6">
               
-              <div className="flex items-start sm:items-center gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-[#3B82F6] shrink-0">
-                  <CurrentIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+              <div className="flex items-start sm:items-center justify-between gap-3">
+                <div className="flex items-start sm:items-center gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-[#3B82F6] shrink-0">
+                    <CurrentIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#F97316]">
+                      PILAR HOMOLOGADO
+                    </span>
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight">
+                      {currentSolution.title}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#F97316]">
-                    PILAR HOMOLOGADO
-                  </span>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight">
-                    {currentSolution.title}
-                  </h3>
-                </div>
+
+                <button
+                  onClick={() => setIsAdminOpen(true)}
+                  className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 text-xs flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                  title="Editar equipamentos deste pilar no Admin"
+                >
+                  <Edit className="w-3.5 h-3.5 text-[#F97316]" />
+                  <span className="hidden sm:inline">Editar Pilar</span>
+                </button>
               </div>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-medium leading-snug">

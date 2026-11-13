@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 export default function WhatsAppFloat() {
+  const { settings } = useAdmin();
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleClick = () => {
     const text = encodeURIComponent('Olá! Gostaria de falar com um consultor da F&G TI sobre cotações e soluções corporativas.');
-    window.open(`https://wa.me/5511957109304?text=${text}`, '_blank');
+    window.open(`https://wa.me/${settings.phone}?text=${text}`, '_blank');
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-end gap-2 sm:gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex items-end gap-2 sm:gap-3">
       
       {/* Tooltip message */}
       {showTooltip && (

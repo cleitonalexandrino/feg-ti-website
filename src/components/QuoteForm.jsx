@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { PhoneCall, ShieldCheck, Building2, User, Mail, MessageSquare, CheckCircle2, Sparkles, Send } from 'lucide-react';
+import { PhoneCall, ShieldCheck, Building2, User, Mail, MessageSquare, CheckCircle2, Sparkles } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 export default function QuoteForm({ preselectedCategory, preselectedBrand, preselectedChallenge }) {
+  const { settings } = useAdmin();
   const [formData, setFormData] = useState({
     nome: '',
     cargo: '',
@@ -73,7 +75,7 @@ export default function QuoteForm({ preselectedCategory, preselectedBrand, prese
 📝 *Detalhes da Demanda / SKUs:*
 ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
 
-    const url = `https://wa.me/5511957109304?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${settings.phone}?text=${encodeURIComponent(text)}`;
     setDispatched(true);
     window.open(url, '_blank');
   };
@@ -111,7 +113,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
             <div className="mb-6 p-4 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-between text-xs sm:text-sm text-emerald-300 animate-fadeIn">
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
-                <span>Solicitação formatada e direcionada ao WhatsApp oficial da F&G TI!</span>
+                <span>Solicitação formatada e direcionada ao WhatsApp oficial da F&G TI ({settings.displayPhone})!</span>
               </div>
               <button 
                 onClick={() => setDispatched(false)}
@@ -276,7 +278,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
             <div className="text-center pt-1">
               <p className="text-[10px] sm:text-[11px] text-[#64748B] flex items-center justify-center gap-1.5 px-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
-                <span>Seus dados são protegidos e enviados diretamente para o atendimento oficial da F&G TI (+55 11 95710-9304).</span>
+                <span>Seus dados são protegidos e enviados diretamente para o atendimento oficial da F&G TI ({settings.displayPhone}).</span>
               </p>
             </div>
 

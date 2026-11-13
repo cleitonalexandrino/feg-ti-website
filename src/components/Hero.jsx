@@ -1,14 +1,17 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, PhoneCall, Sparkles } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 export default function Hero({ onOpenQuote }) {
+  const { settings, partners } = useAdmin();
+
   const handleWhatsApp = () => {
     const text = encodeURIComponent('Olá! Gostaria de uma cotação com a F&G TI para minha empresa.');
-    window.open(`https://wa.me/5511957109304?text=${text}`, '_blank');
+    window.open(`https://wa.me/${settings.phone}?text=${text}`, '_blank');
   };
 
   const keyMetrics = [
-    { number: '+40', label: 'Fabricantes Homologados', sub: 'Dell, HPE, Zebra, Lenovo, etc.' },
+    { number: `+${partners.length}`, label: 'Fabricantes Homologados', sub: 'Dell, HPE, Zebra, Lenovo, etc.' },
     { number: '100%', label: 'Atendimento Consultivo', sub: 'Engenharia de projeto antes da venda' },
     { number: 'B2B', label: 'Faturamento Corporativo', sub: 'Condições comerciais para PJ' },
     { number: 'Brasil', label: 'Cobertura Nacional', sub: 'Logística ágil e pronta entrega' }
@@ -17,7 +20,7 @@ export default function Hero({ onOpenQuote }) {
   return (
     <section id="inicio" className="relative pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 overflow-hidden bg-[#060A11]">
       
-      {/* Subtle Radial Ambient Glow as per Dark Enterprise Authority Skill */}
+      {/* Subtle Radial Ambient Glow */}
       <div 
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[550px] pointer-events-none -z-10"
         style={{
@@ -40,18 +43,18 @@ export default function Hero({ onOpenQuote }) {
 
           {/* Signature Headline Treatment: Crisp Pure White + Warm Amber-Orange Split Gradient */}
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12]">
-            Entendemos seu negócio. <br />
+            {settings.heroHeadline} <br />
             <span className="bg-gradient-to-r from-white via-[#FB923C] to-[#F97316] bg-clip-text text-transparent">
-              Conectamos soluções.
+              {settings.heroGradientText}
             </span>
           </h1>
 
-          {/* Subheadline in Cool Slate Gray */}
+          {/* Subheadline */}
           <p className="text-sm sm:text-lg md:text-xl text-[#94A3B8] max-w-3xl mx-auto font-normal leading-relaxed px-2">
-            Tecnologia que conecta, soluções que geram resultados. Fornecimento consultivo de <strong className="text-white font-semibold">Devices, Automação Comercial, Data Center, Cibersegurança, Redes e Licenciamento</strong> com os principais fabricantes mundiais.
+            {settings.heroSubtitle}
           </p>
 
-          {/* Dual CTA Row (Solid Orange + Ghost WhatsApp + Anchor) */}
+          {/* Dual CTA Row */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 px-2 sm:px-0">
             <button
               onClick={() => onOpenQuote()}
@@ -66,7 +69,7 @@ export default function Hero({ onOpenQuote }) {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-white bg-[#0D1422] hover:bg-[#111927] border border-white/10 hover:border-[#10B981]/50 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#10B981]" />
-              <span>WhatsApp: (11) 95710-9304</span>
+              <span>WhatsApp: {settings.displayPhone}</span>
             </button>
 
             <a
