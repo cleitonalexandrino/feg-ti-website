@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, PhoneCall, Sparkles } from 'lucide-react';
 import { useAdmin } from '../context/AdminContext';
 
 export default function Hero({ onOpenQuote }) {
   const { settings, partners } = useAdmin();
+  const [showWaHeroMenu, setShowWaHeroMenu] = useState(false);
 
-  const handleWhatsApp = () => {
+  const handleWhatsAppNumber = (phone) => {
     const text = encodeURIComponent('Olá! Gostaria de uma cotação com a F&G TI para minha empresa.');
-    window.open(`https://wa.me/${settings.phone}?text=${text}`, '_blank');
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    setShowWaHeroMenu(false);
   };
 
   const keyMetrics = [
@@ -74,13 +76,46 @@ export default function Hero({ onOpenQuote }) {
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <button
-              onClick={handleWhatsApp}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-white bg-[#071738] hover:bg-[#091B42] border border-blue-500/25 hover:border-[#10B981]/50 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
-            >
-              <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#10B981]" />
-              <span>WhatsApp: {settings.displayPhone}</span>
-            </button>
+            {/* Dual WhatsApp Contact Selector in Hero */}
+            <div className="relative w-full sm:w-auto">
+              <button
+                onClick={() => setShowWaHeroMenu(!showWaHeroMenu)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-white bg-[#071738] hover:bg-[#091B42] border border-blue-500/25 hover:border-[#10B981]/50 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
+              >
+                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#10B981]" />
+                <span>WhatsApp Consultores</span>
+                <span className="text-xs text-emerald-400">▾</span>
+              </button>
+
+              {showWaHeroMenu && (
+                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-72 rounded-2xl bg-[#071738] border border-blue-500/30 p-2.5 shadow-2xl backdrop-blur-xl space-y-1.5 z-30 animate-fadeIn text-left">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">
+                    Escolha o Consultor F&G TI:
+                  </div>
+                  <button
+                    onClick={() => handleWhatsAppNumber(settings.phone || '5511957109304')}
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#040E26] hover:bg-[#0A225A] text-left transition-colors cursor-pointer group"
+                  >
+                    <div>
+                      <div className="text-xs font-bold text-white group-hover:text-[#10B981]">Consultoria Comercial 1</div>
+                      <div className="text-[11px] text-slate-400 font-mono">{settings.displayPhone || '(11) 95710-9304'}</div>
+                    </div>
+                    <PhoneCall className="w-4 h-4 text-[#10B981]" />
+                  </button>
+
+                  <button
+                    onClick={() => handleWhatsAppNumber(settings.secondaryPhone || '5511988921054')}
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#040E26] hover:bg-[#0A225A] text-left transition-colors cursor-pointer group"
+                  >
+                    <div>
+                      <div className="text-xs font-bold text-white group-hover:text-[#10B981]">Consultoria Comercial 2</div>
+                      <div className="text-[11px] text-slate-400 font-mono">{settings.secondaryDisplayPhone || '(11) 98892-1054'}</div>
+                    </div>
+                    <PhoneCall className="w-4 h-4 text-[#10B981]" />
+                  </button>
+                </div>
+              )}
+            </div>
 
             <a
               href="#solucoes"

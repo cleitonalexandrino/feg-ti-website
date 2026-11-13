@@ -6,6 +6,7 @@ export default function Navbar({ onOpenQuote }) {
   const { settings, setIsAdminOpen } = useAdmin();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showWaMenu, setShowWaMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +32,10 @@ export default function Navbar({ onOpenQuote }) {
     { name: 'Diferenciais', href: '#diferenciais' },
   ];
 
-  const handleWhatsAppDirect = () => {
+  const handleOpenWhatsApp = (phoneNumber) => {
     const text = encodeURIComponent('Olá! Gostaria de falar com um consultor da F&G TI sobre soluções e cotações corporativas.');
-    window.open(`https://wa.me/${settings.phone}?text=${text}`, '_blank');
+    window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+    setShowWaMenu(false);
   };
 
   const handleNavClick = (href) => {
@@ -83,16 +85,47 @@ export default function Navbar({ onOpenQuote }) {
             {/* Dual Conversion Actions: Ghost WhatsApp + Solid Orange CTA */}
             <div className="flex items-center gap-2 sm:gap-3">
               
-              {/* Ghost / Outlined WhatsApp Button */}
-              <button
-                onClick={handleWhatsAppDirect}
-                className="hidden md:inline-flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold text-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981]/20 border border-[#10B981]/30 transition-all hover:scale-105 cursor-pointer"
-                title={`Atendimento via WhatsApp: ${settings.displayPhone}`}
-              >
-                <PhoneCall className="w-3.5 h-3.5 text-[#10B981]" />
-                <span className="hidden lg:inline">{settings.displayPhone}</span>
-                <span className="lg:hidden">WhatsApp</span>
-              </button>
+              {/* Desktop WhatsApp Dropdown Menu */}
+              <div className="relative hidden md:block">
+                <button
+                  onClick={() => setShowWaMenu(!showWaMenu)}
+                  className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold text-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981]/20 border border-[#10B981]/30 transition-all hover:scale-105 cursor-pointer"
+                  title="Atendimento via WhatsApp (2 Consultores)"
+                >
+                  <PhoneCall className="w-3.5 h-3.5 text-[#10B981]" />
+                  <span>WhatsApp</span>
+                  <span className="text-[10px] text-emerald-400">▾</span>
+                </button>
+
+                {showWaMenu && (
+                  <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-[#071738] border border-blue-500/30 p-2.5 shadow-2xl backdrop-blur-xl space-y-1.5 z-50 animate-fadeIn">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">
+                      Falar com Consultor:
+                    </div>
+                    <button
+                      onClick={() => handleOpenWhatsApp(settings.phone || '5511957109304')}
+                      className="w-full flex items-center justify-between p-2 rounded-xl bg-[#040E26] hover:bg-[#0A225A] text-left transition-colors cursor-pointer group"
+                    >
+                      <div>
+                        <div className="text-xs font-bold text-white group-hover:text-[#10B981]">Consultoria 1</div>
+                        <div className="text-[11px] text-slate-400 font-mono">{settings.displayPhone || '(11) 95710-9304'}</div>
+                      </div>
+                      <PhoneCall className="w-3.5 h-3.5 text-[#10B981]" />
+                    </button>
+
+                    <button
+                      onClick={() => handleOpenWhatsApp(settings.secondaryPhone || '5511988921054')}
+                      className="w-full flex items-center justify-between p-2 rounded-xl bg-[#040E26] hover:bg-[#0A225A] text-left transition-colors cursor-pointer group"
+                    >
+                      <div>
+                        <div className="text-xs font-bold text-white group-hover:text-[#10B981]">Consultoria 2</div>
+                        <div className="text-[11px] text-slate-400 font-mono">{settings.secondaryDisplayPhone || '(11) 98892-1054'}</div>
+                      </div>
+                      <PhoneCall className="w-3.5 h-3.5 text-[#10B981]" />
+                    </button>
+                  </div>
+                )}
+              </div>
 
               {/* Solid Solar Orange Primary CTA Button */}
               <button
@@ -160,12 +193,29 @@ export default function Navbar({ onOpenQuote }) {
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  handleWhatsAppDirect();
+                  handleOpenWhatsApp(settings.phone || '5511957109304');
                 }}
-                className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/30 active:scale-98 transition-transform cursor-pointer"
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/30 active:scale-98 transition-transform cursor-pointer"
               >
-                <PhoneCall className="w-4 h-4 text-[#10B981]" />
-                <span>WhatsApp: {settings.displayPhone}</span>
+                <div className="flex items-center gap-2">
+                  <PhoneCall className="w-4 h-4 text-[#10B981]" />
+                  <span>WhatsApp 1: {settings.displayPhone || '(11) 95710-9304'}</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 font-bold">Chamar →</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleOpenWhatsApp(settings.secondaryPhone || '5511988921054');
+                }}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/30 active:scale-98 transition-transform cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <PhoneCall className="w-4 h-4 text-[#10B981]" />
+                  <span>WhatsApp 2: {settings.secondaryDisplayPhone || '(11) 98892-1054'}</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 font-bold">Chamar →</span>
               </button>
 
               <button

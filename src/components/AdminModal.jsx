@@ -575,23 +575,43 @@ export default function AdminModal() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       
                       <div className="space-y-1">
-                        <label className="text-xs font-bold text-slate-300 uppercase">Número do WhatsApp (apenas dígitos com DDD)</label>
+                        <label className="text-xs font-bold text-slate-300 uppercase">WhatsApp 1 (Dígitos com DDD)</label>
                         <input
                           type="text"
                           required
-                          value={tempSettings.phone}
+                          value={tempSettings.phone || ''}
                           onChange={(e) => setTempSettings({ ...tempSettings, phone: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
                       <div className="space-y-1">
-                        <label className="text-xs font-bold text-slate-300 uppercase">Texto Visível do Telefone</label>
+                        <label className="text-xs font-bold text-slate-300 uppercase">Texto Visível WhatsApp 1</label>
                         <input
                           type="text"
                           required
-                          value={tempSettings.displayPhone}
+                          value={tempSettings.displayPhone || ''}
                           onChange={(e) => setTempSettings({ ...tempSettings, displayPhone: e.target.value })}
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-slate-300 uppercase">WhatsApp 2 (Dígitos com DDD)</label>
+                        <input
+                          type="text"
+                          value={tempSettings.secondaryPhone || ''}
+                          onChange={(e) => setTempSettings({ ...tempSettings, secondaryPhone: e.target.value })}
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-slate-300 uppercase">Texto Visível WhatsApp 2</label>
+                        <input
+                          type="text"
+                          value={tempSettings.secondaryDisplayPhone || ''}
+                          onChange={(e) => setTempSettings({ ...tempSettings, secondaryDisplayPhone: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>

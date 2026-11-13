@@ -91,13 +91,23 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs">
               <a 
-                href={`https://wa.me/${settings.phone}`}
+                href={`https://wa.me/${settings.phone || '5511957109304'}?text=${encodeURIComponent('Olá! Gostaria de falar com o consultor 1 da F&G TI.')}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-[#10B981] hover:text-emerald-300 transition-colors py-1"
               >
                 <PhoneCall className="w-4 h-4 shrink-0" />
-                <span>WhatsApp: {settings.displayPhone}</span>
+                <span>WhatsApp 1: {settings.displayPhone || '(11) 95710-9304'}</span>
+              </a>
+
+              <a 
+                href={`https://wa.me/${settings.secondaryPhone || '5511988921054'}?text=${encodeURIComponent('Olá! Gostaria de falar com o consultor 2 da F&G TI.')}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#10B981] hover:text-emerald-300 transition-colors py-1"
+              >
+                <PhoneCall className="w-4 h-4 shrink-0" />
+                <span>WhatsApp 2: {settings.secondaryDisplayPhone || '(11) 98892-1054'}</span>
               </a>
 
               <div className="flex items-start gap-2 text-[#94A3B8]">

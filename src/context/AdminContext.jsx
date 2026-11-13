@@ -7,6 +7,8 @@ const AdminContext = createContext();
 const DEFAULT_SETTINGS = {
   phone: '5511957109304',
   displayPhone: '(11) 95710-9304',
+  secondaryPhone: '5511988921054',
+  secondaryDisplayPhone: '(11) 98892-1054',
   tagline: 'Tecnologia que simplifica. Parcerias que fortalecem.',
   heroHeadline: 'Tecnologia que simplifica.',
   heroGradientText: 'Parcerias que fortalecem.',
@@ -38,7 +40,7 @@ export function AdminProvider({ children }) {
   const [settings, setSettings] = useState(() => {
     try {
       const saved = localStorage.getItem('fgti_settings');
-      return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
+      return saved ? { ...DEFAULT_SETTINGS, ...JSON.parse(saved) } : DEFAULT_SETTINGS;
     } catch {
       return DEFAULT_SETTINGS;
     }

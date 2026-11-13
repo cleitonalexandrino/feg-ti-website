@@ -4,6 +4,7 @@ import { useAdmin } from '../context/AdminContext';
 
 export default function QuoteForm({ preselectedCategory, preselectedBrand, preselectedChallenge }) {
   const { settings } = useAdmin();
+  const [selectedConsultant, setSelectedConsultant] = useState('1');
   const [formData, setFormData] = useState({
     nome: '',
     cargo: '',
@@ -75,7 +76,10 @@ export default function QuoteForm({ preselectedCategory, preselectedBrand, prese
 📝 *Detalhes da Demanda / SKUs:*
 ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
 
-    const url = `https://wa.me/${settings.phone}?text=${encodeURIComponent(text)}`;
+    const targetPhone = selectedConsultant === '2' 
+      ? (settings.secondaryPhone || '5511988921054') 
+      : (settings.phone || '5511957109304');
+    const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(text)}`;
     setDispatched(true);
     window.open(url, '_blank');
   };
@@ -262,6 +266,59 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
               />
+            </div>
+
+            {/* Escolha do Consultor WhatsApp */}
+            <div className="space-y-1.5 pt-1">
+              <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                <PhoneCall className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
+                <span>Enviar para qual Consultor da F&G TI?</span>
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedConsultant('1')}
+                  className={`p-3 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
+                    selectedConsultant === '1'
+                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/20'
+                      : 'bg-[#040E26] border-blue-500/20 text-slate-300 hover:border-slate-500'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                      selectedConsultant === '1' ? 'border-[#10B981] bg-[#10B981]' : 'border-slate-500'
+                    }`}>
+                      {selectedConsultant === '1' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                    </span>
+                    <div>
+                      <div className="text-xs font-bold">Consultor Comercial 1</div>
+                      <div className="text-[11px] text-slate-400 font-mono">{settings.displayPhone || '(11) 95710-9304'}</div>
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedConsultant('2')}
+                  className={`p-3 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
+                    selectedConsultant === '2'
+                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/20'
+                      : 'bg-[#040E26] border-blue-500/20 text-slate-300 hover:border-slate-500'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                      selectedConsultant === '2' ? 'border-[#10B981] bg-[#10B981]' : 'border-slate-500'
+                    }`}>
+                      {selectedConsultant === '2' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                    </span>
+                    <div>
+                      <div className="text-xs font-bold">Consultor Comercial 2</div>
+                      <div className="text-[11px] text-slate-400 font-mono">{settings.secondaryDisplayPhone || '(11) 98892-1054'}</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
 
             {/* Submit Button (Direct to WhatsApp) */}
