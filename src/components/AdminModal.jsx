@@ -3,10 +3,8 @@ import { useAdmin } from '../context/AdminContext';
 import { 
   X, 
   Lock, 
-  Unlock, 
   Plus, 
   Trash2, 
-  Edit3, 
   Save, 
   RotateCcw, 
   Download, 
@@ -17,7 +15,7 @@ import {
   Phone, 
   Settings, 
   Search,
-  ExternalLink
+  Image as ImageIcon
 } from 'lucide-react';
 
 export default function AdminModal() {
@@ -48,12 +46,13 @@ export default function AdminModal() {
   // Search in partners list
   const [partnerSearch, setPartnerSearch] = useState('');
 
-  // New Partner Form State
+  // New Partner Form State with Image
   const [newPartner, setNewPartner] = useState({
     name: '',
     category: 'devices',
     badge: 'Corporativo',
-    desc: ''
+    desc: '',
+    image: ''
   });
   const [partnerSuccess, setPartnerSuccess] = useState(false);
 
@@ -77,6 +76,22 @@ export default function AdminModal() {
     }
   };
 
+  // Image Upload Handler (converts to Base64)
+  const handleImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Por favor, selecione uma imagem menor que 2MB para garantir alta velocidade.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewPartner(prev => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleAddPartner = (e) => {
     e.preventDefault();
     if (!newPartner.name.trim()) return;
@@ -86,7 +101,8 @@ export default function AdminModal() {
       name: '',
       category: 'devices',
       badge: 'Corporativo',
-      desc: ''
+      desc: '',
+      image: ''
     });
     setPartnerSuccess(true);
     setTimeout(() => setPartnerSuccess(false), 3000);
@@ -146,7 +162,7 @@ export default function AdminModal() {
                 </span>
               </h3>
               <p className="text-xs text-slate-400 hidden sm:block">
-                Edite produtos, fabricantes e textos com atualização em tempo real
+                Edite produtos, imagens de fabricantes e textos com atualização em tempo real
               </p>
             </div>
           </div>
@@ -223,7 +239,7 @@ export default function AdminModal() {
                 }`}
               >
                 <Building2 className="w-4 h-4" />
-                <span>Fabricantes & Marcas ({partners.length})</span>
+                <span>Fabricantes & Produtos ({partners.length})</span>
               </button>
 
               <button
@@ -235,7 +251,7 @@ export default function AdminModal() {
                 }`}
               >
                 <Layers className="w-4 h-4" />
-                <span>Pilares de Soluções & Produtos</span>
+                <span>Pilares de Soluções</span>
               </button>
 
               <button
@@ -259,23 +275,23 @@ export default function AdminModal() {
                 }`}
               >
                 <Download className="w-4 h-4" />
-                <span>Backup & Sincronização</span>
+                <span>Backup & Banco de Dados</span>
               </button>
             </div>
 
             {/* Scrollable Tab Content Container */}
             <div className="flex-1 overflow-y-auto p-5 sm:p-8 space-y-8">
               
-              {/* TAB 1: PARTNERS / FABRICANTES */}
+              {/* TAB 1: PARTNERS WITH IMAGE UPLOAD */}
               {activeTab === 'partners' && (
                 <div className="space-y-8">
                   
-                  {/* Add New Partner Form */}
+                  {/* Add New Partner Form with Image */}
                   <div className="p-5 sm:p-6 rounded-2xl bg-[#080D16] border border-white/10 space-y-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-bold text-white flex items-center gap-2">
                         <Plus className="w-4 h-4 text-[#F97316]" />
-                        <span>Cadastrar Novo Fabricante / Produto Parceiro</span>
+                        <span>Cadastrar Novo Fabricante / Produto com Imagem</span>
                       </h4>
                       {partnerSuccess && (
                         <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
@@ -285,62 +301,113 @@ export default function AdminModal() {
                       )}
                     </div>
 
-                    <form onSubmit={handleAddPartner} className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
-                      <div className="sm:col-span-4 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-300 uppercase">Nome da Marca *</label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Ex: Cisco, Fortinet, Asus..."
-                          value={newPartner.name}
-                          onChange={(e) => setNewPartner({ ...newPartner, name: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
-                        />
+                    <form onSubmit={handleAddPartner} className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
+                        <div className="sm:col-span-4 space-y-1">
+                          <label className="text-[11px] font-bold text-slate-300 uppercase">Nome da Marca / Produto *</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Ex: Cisco, Fortinet, Asus..."
+                            value={newPartner.name}
+                            onChange={(e) => setNewPartner({ ...newPartner, name: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          />
+                        </div>
+
+                        <div className="sm:col-span-3 space-y-1">
+                          <label className="text-[11px] font-bold text-slate-300 uppercase">Categoria</label>
+                          <select
+                            value={newPartner.category}
+                            onChange={(e) => setNewPartner({ ...newPartner, category: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          >
+                            {categories.filter(c => c.id !== 'all').map(c => (
+                              <option key={c.id} value={c.id}>{c.name}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="sm:col-span-3 space-y-1">
+                          <label className="text-[11px] font-bold text-slate-300 uppercase">Selo / Badge</label>
+                          <input
+                            type="text"
+                            placeholder="Ex: Homologado, Oficial..."
+                            value={newPartner.badge}
+                            onChange={(e) => setNewPartner({ ...newPartner, badge: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          />
+                        </div>
+
+                        <div className="sm:col-span-2">
+                          <button
+                            type="submit"
+                            className="w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] transition-all cursor-pointer shadow-md shadow-[#F97316]/20 flex items-center justify-center gap-1.5"
+                          >
+                            <Plus className="w-4 h-4" />
+                            <span>Adicionar</span>
+                          </button>
+                        </div>
+
+                        <div className="sm:col-span-12 space-y-1">
+                          <label className="text-[11px] font-bold text-slate-300 uppercase">Descrição dos Equipamentos / Soluções</label>
+                          <input
+                            type="text"
+                            placeholder="Ex: Switches gerenciáveis, roteadores de alta capacidade e firewalls corporativos."
+                            value={newPartner.desc}
+                            onChange={(e) => setNewPartner({ ...newPartner, desc: e.target.value })}
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          />
+                        </div>
                       </div>
 
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-300 uppercase">Categoria</label>
-                        <select
-                          value={newPartner.category}
-                          onChange={(e) => setNewPartner({ ...newPartner, category: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
-                        >
-                          {categories.filter(c => c.id !== 'all').map(c => (
-                            <option key={c.id} value={c.id}>{c.name}</option>
-                          ))}
-                        </select>
-                      </div>
+                      {/* Image Upload Row */}
+                      <div className="p-3.5 rounded-xl bg-[#0D1422] border border-white/[0.08] flex flex-col sm:flex-row items-center gap-4">
+                        <div className="flex-1 space-y-1 w-full">
+                          <label className="text-[11px] font-bold text-slate-300 uppercase flex items-center gap-1.5">
+                            <ImageIcon className="w-3.5 h-3.5 text-[#F97316]" />
+                            <span>Logo / Imagem do Fabricante ou Produto (Opcional)</span>
+                          </label>
+                          
+                          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                            <label className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-[#080D16] border border-white/10 text-xs font-semibold text-slate-300 hover:text-white hover:border-[#F97316] cursor-pointer transition-all">
+                              <Upload className="w-3.5 h-3.5 text-[#F97316]" />
+                              <span>Escolher Foto do Computador</span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                className="hidden"
+                              />
+                            </label>
 
-                      <div className="sm:col-span-3 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-300 uppercase">Selo / Badge</label>
-                        <input
-                          type="text"
-                          placeholder="Ex: Homologado, Oficial..."
-                          value={newPartner.badge}
-                          onChange={(e) => setNewPartner({ ...newPartner, badge: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
-                        />
-                      </div>
+                            <span className="text-[11px] text-slate-500 text-center sm:text-left">ou cole uma URL de imagem:</span>
 
-                      <div className="sm:col-span-2">
-                        <button
-                          type="submit"
-                          className="w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] transition-all cursor-pointer shadow-md shadow-[#F97316]/20 flex items-center justify-center gap-1.5"
-                        >
-                          <Plus className="w-4 h-4" />
-                          <span>Adicionar</span>
-                        </button>
-                      </div>
+                            <input
+                              type="url"
+                              placeholder="https://exemplo.com/logo.png"
+                              value={newPartner.image}
+                              onChange={(e) => setNewPartner({ ...newPartner, image: e.target.value })}
+                              className="flex-1 px-3 py-1.5 rounded-xl bg-[#080D16] border border-white/10 text-xs text-white focus:outline-none focus:border-[#F97316]"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="sm:col-span-12 space-y-1">
-                        <label className="text-[11px] font-bold text-slate-300 uppercase">Descrição dos Equipamentos / Soluções</label>
-                        <input
-                          type="text"
-                          placeholder="Ex: Switches gerenciáveis, roteadores de alta capacidade e firewalls corporativos."
-                          value={newPartner.desc}
-                          onChange={(e) => setNewPartner({ ...newPartner, desc: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
-                        />
+                        {/* Image Preview */}
+                        {newPartner.image && (
+                          <div className="flex items-center gap-2 shrink-0">
+                            <div className="w-12 h-12 rounded-xl bg-[#080D16] border border-white/15 p-1 flex items-center justify-center overflow-hidden">
+                              <img src={newPartner.image} alt="Preview" className="w-full h-full object-contain" />
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => setNewPartner({ ...newPartner, image: '' })}
+                              className="text-xs text-red-400 hover:underline cursor-pointer"
+                            >
+                              Remover
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </form>
                   </div>
@@ -370,7 +437,12 @@ export default function AdminModal() {
                           className="p-3.5 rounded-xl bg-[#080D16] border border-white/[0.08] flex items-start justify-between gap-2 group"
                         >
                           <div className="space-y-1 min-w-0">
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-2">
+                              {p.image && (
+                                <div className="w-6 h-6 rounded bg-[#0D1422] p-0.5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                                  <img src={p.image} alt={p.name} className="w-full h-full object-contain" />
+                                </div>
+                              )}
                               <span className="font-bold text-sm text-white truncate">{p.name}</span>
                               <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10 shrink-0">
                                 {p.badge}
@@ -569,14 +641,17 @@ export default function AdminModal() {
                 </div>
               )}
 
-              {/* TAB 4: BACKUP & DATA SYNC */}
+              {/* TAB 4: BACKUP & DATABASE EXPLANATION */}
               {activeTab === 'backup' && (
                 <div className="space-y-6">
                   
                   <div className="p-5 rounded-2xl bg-[#080D16] border border-white/10 space-y-4">
-                    <h4 className="text-sm font-bold text-white">Exportar e Importar Backup</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      Você pode baixar um backup em arquivo JSON com todos os fabricantes e produtos cadastrados, ou restaurar um backup existente em outro computador.
+                    <h4 className="text-sm font-bold text-white">Como Funciona o Armazenamento Atual:</h4>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Atualmente, as alterações feitas neste painel são salvas no <strong>armazenamento local (LocalStorage)</strong> do seu navegador de forma instantânea.
+                    </p>
+                    <p className="text-xs text-[#94A3B8] leading-relaxed">
+                      💡 <strong>Deseja sincronizar com um Banco de Dados na Nuvem (ex: Supabase)?</strong> Se você quiser que as alterações feitas aqui apareçam automaticamente para todos os visitantes do mundo sem precisar atualizar código no GitHub, podemos plugar um banco de dados Supabase gratuito!
                     </p>
 
                     <div className="flex flex-wrap gap-3 pt-2">
@@ -590,7 +665,7 @@ export default function AdminModal() {
 
                       <label className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 bg-[#0D1422] border border-white/10 hover:text-white hover:bg-white/5 cursor-pointer flex items-center gap-2">
                         <Upload className="w-4 h-4 text-[#F97316]" />
-                        <span>Importar Arquivo de Backup</span>
+                        <span>Restaurar Backup</span>
                         <input
                           type="file"
                           accept=".json"
@@ -604,7 +679,7 @@ export default function AdminModal() {
                   <div className="p-5 rounded-2xl bg-red-950/20 border border-red-900/30 space-y-3">
                     <h4 className="text-sm font-bold text-red-300">Restaurar Dados Originais de Fábrica</h4>
                     <p className="text-xs text-red-200/70 leading-relaxed">
-                      Se desejar descartar todas as alterações e voltar ao catálogo oficial original com os 40+ fabricantes da F&G TI:
+                      Se desejar descartar todas as alterações e voltar ao catálogo original com os 40+ fabricantes da F&G TI:
                     </p>
                     <button
                       onClick={resetToDefaults}

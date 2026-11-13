@@ -137,9 +137,16 @@ export default function PartnersGrid({ onSelectPartner }) {
             >
               <div className="space-y-2.5 sm:space-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-[#F97316] transition-colors truncate">
-                    {partner.name}
-                  </h4>
+                  <div className="flex items-center gap-2 min-w-0">
+                    {partner.image && (
+                      <div className="w-8 h-8 rounded-lg bg-[#080D16] p-1 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src={partner.image} alt={partner.name} className="w-full h-full object-contain" />
+                      </div>
+                    )}
+                    <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-[#F97316] transition-colors truncate">
+                      {partner.name}
+                    </h4>
+                  </div>
                   <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#111927] text-slate-300 border border-white/10 shrink-0">
                     {partner.badge}
                   </span>

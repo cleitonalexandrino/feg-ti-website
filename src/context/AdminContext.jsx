@@ -12,7 +12,7 @@ const DEFAULT_SETTINGS = {
   heroGradientText: 'Conectamos soluções.',
   heroSubtitle: 'Tecnologia que conecta, soluções que geram resultados. Fornecimento consultivo de Devices, Automação Comercial, Data Center, Cibersegurança, Redes e Licenciamento com os principais fabricantes mundiais.',
   linkedinUrl: 'https://www.linkedin.com/company/fegtiltda/posts/',
-  adminPassword: 'admin' // Senha padrão para acesso inicial
+  adminPassword: 'admin'
 };
 
 export function AdminProvider({ children }) {
@@ -89,7 +89,7 @@ export function AdminProvider({ children }) {
     sessionStorage.removeItem('fgti_admin_auth');
   };
 
-  // Partner methods
+  // Partner methods with Image support
   const addPartner = (newPartner) => {
     setPartners(prev => [newPartner, ...prev]);
   };
