@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import Challenges from './components/Challenges';
 import SolutionsHub from './components/SolutionsHub';
 import Spotlights from './components/Spotlights';
-import PartnersGrid from './components/PartnersGrid';
 import WhyChooseUs from './components/WhyChooseUs';
 import QuoteForm from './components/QuoteForm';
 import Footer from './components/Footer';
@@ -54,8 +53,6 @@ export default function App() {
           <SolutionsHub onSelectCategory={handleOpenQuote} />
           
           <Spotlights onOpenQuoteWithBrand={handleSelectPartner} />
-          
-          <PartnersGrid onSelectPartner={handleSelectPartner} />
           
           <WhyChooseUs onOpenQuote={handleOpenQuote} />
           

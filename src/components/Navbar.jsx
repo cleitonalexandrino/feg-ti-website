@@ -27,7 +27,6 @@ export default function Navbar({ onOpenQuote }) {
     { name: 'Início', href: '#inicio' },
     { name: 'Desafios TI', href: '#desafios' },
     { name: 'Soluções & Produtos', href: '#solucoes' },
-    { name: 'Fabricantes', href: '#fabricantes' },
     { name: 'Zebra & Aruba', href: '#destaques' },
     { name: 'Diferenciais', href: '#diferenciais' },
   ];

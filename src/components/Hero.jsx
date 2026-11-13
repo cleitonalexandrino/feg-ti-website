@@ -83,10 +83,10 @@ export default function Hero({ onOpenQuote }) {
             </button>
 
             <a
-              href="#fabricantes"
+              href="#solucoes"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.04] transition-colors"
             >
-              <span>Ver Fabricantes Parceiros</span>
+              <span>Ver Soluções Corporativas</span>
               <span className="text-[#00D2FF]">↓</span>
             </a>
           </div>
