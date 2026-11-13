@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { PhoneCall, ShieldCheck, Building2, User, Mail, MessageSquare, CheckCircle2, Sparkles } from 'lucide-react';
+import { PhoneCall, ShieldCheck, Building2, User, Mail, MessageSquare, CheckCircle2, Sparkles, Check } from 'lucide-react';
 import { useAdmin } from '../context/AdminContext';
 
 export default function QuoteForm({ preselectedCategory, preselectedBrand, preselectedChallenge }) {
   const { settings } = useAdmin();
-  const [selectedConsultant, setSelectedConsultant] = useState('1');
+  const [sendTo1, setSendTo1] = useState(true);
+  const [sendTo2, setSendTo2] = useState(true);
+  const [pendingSecondUrl, setPendingSecondUrl] = useState(null);
   const [formData, setFormData] = useState({
     nome: '',
     cargo: '',
@@ -76,12 +78,37 @@ export default function QuoteForm({ preselectedCategory, preselectedBrand, prese
 📝 *Detalhes da Demanda / SKUs:*
 ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
 
-    const targetPhone = selectedConsultant === '2' 
-      ? (settings.secondaryPhone || '5511988921054') 
-      : (settings.phone || '5511957109304');
-    const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(text)}`;
-    setDispatched(true);
-    window.open(url, '_blank');
+    const phone1 = settings.phone || '5511957109304';
+    const phone2 = settings.secondaryPhone || '5511988921054';
+
+    if (sendTo1 && sendTo2) {
+      const url1 = `https://wa.me/${phone1}?text=${encodeURIComponent(text)}`;
+      const url2 = `https://wa.me/${phone2}?text=${encodeURIComponent(text)}`;
+      setDispatched(true);
+      setPendingSecondUrl(url2);
+      
+      // Abre o primeiro WhatsApp diretamente
+      window.open(url1, '_blank');
+      
+      // Tenta abrir a segunda aba para o segundo consultor
+      setTimeout(() => {
+        try {
+          window.open(url2, '_blank');
+        } catch (e) {
+          console.log('Navegador bloqueou abertura da segunda aba simultânea');
+        }
+      }, 500);
+    } else if (sendTo1) {
+      const url1 = `https://wa.me/${phone1}?text=${encodeURIComponent(text)}`;
+      setDispatched(true);
+      setPendingSecondUrl(null);
+      window.open(url1, '_blank');
+    } else if (sendTo2) {
+      const url2 = `https://wa.me/${phone2}?text=${encodeURIComponent(text)}`;
+      setDispatched(true);
+      setPendingSecondUrl(null);
+      window.open(url2, '_blank');
+    }
   };
 
   return (
@@ -114,17 +141,42 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
         <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-[#071738] border border-blue-500/25 p-5 sm:p-8 lg:p-12 shadow-2xl backdrop-blur-md">
           
           {dispatched && (
-            <div className="mb-6 p-4 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-between text-xs sm:text-sm text-emerald-300 animate-fadeIn">
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
-                <span>Solicitação formatada e direcionada ao WhatsApp oficial da F&G TI ({settings.displayPhone})!</span>
+            <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 text-xs sm:text-sm text-emerald-300 animate-fadeIn space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
+                  <span className="font-semibold text-white">
+                    {sendTo1 && sendTo2
+                      ? 'Solicitação formatada e direcionada para ambos os consultores da F&G TI!'
+                      : sendTo1
+                      ? `Solicitação formatada e direcionada para o Consultor 1 (${settings.displayPhone || '(11) 95710-9304'})!`
+                      : `Solicitação formatada e direcionada para o Consultor 2 (${settings.secondaryDisplayPhone || '(11) 98892-1054'})!`
+                    }
+                  </span>
+                </div>
+                <button 
+                  onClick={() => setDispatched(false)}
+                  className="text-xs underline text-emerald-200 hover:text-white cursor-pointer ml-2 shrink-0"
+                >
+                  Editar
+                </button>
               </div>
-              <button 
-                onClick={() => setDispatched(false)}
-                className="text-xs underline text-emerald-200 hover:text-white cursor-pointer ml-2"
-              >
-                Editar
-              </button>
+
+              {pendingSecondUrl && (
+                <div className="pt-2 border-t border-emerald-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+                  <span className="text-[11px] text-emerald-200">
+                    💡 Caso o navegador tenha bloqueado a abertura simultânea do segundo WhatsApp:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => window.open(pendingSecondUrl, '_blank')}
+                    className="px-3.5 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-900/40 cursor-pointer active:scale-95 transition-all"
+                  >
+                    <span>Abrir Chat com Consultor 2 agora</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -268,53 +320,105 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
               />
             </div>
 
-            {/* Escolha do Consultor WhatsApp */}
-            <div className="space-y-1.5 pt-1">
-              <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                <PhoneCall className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
-                <span>Enviar para qual Consultor da F&G TI?</span>
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+            {/* Escolha do(s) Consultor(es) WhatsApp - Permite Habilitar Ambos */}
+            <div className="space-y-2 pt-1">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <PhoneCall className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
+                  <span>Enviar para qual Consultor da F&G TI?</span>
+                </label>
                 <button
                   type="button"
-                  onClick={() => setSelectedConsultant('1')}
-                  className={`p-3 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
-                    selectedConsultant === '1'
-                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/20'
-                      : 'bg-[#040E26] border-blue-500/20 text-slate-300 hover:border-slate-500'
+                  onClick={() => {
+                    if (sendTo1 && sendTo2) {
+                      setSendTo1(true);
+                      setSendTo2(false);
+                    } else {
+                      setSendTo1(true);
+                      setSendTo2(true);
+                    }
+                  }}
+                  className="text-[11px] font-bold text-[#00D2FF] hover:text-cyan-300 transition-colors cursor-pointer text-left sm:text-right"
+                >
+                  {sendTo1 && sendTo2 ? '• Habilitar apenas um' : '✓ Habilitar os dois WhatsApps'}
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                {/* Consultor 1 */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (sendTo1 && !sendTo2) {
+                      // Se só o 1 estava ativo, ativa o 2
+                      setSendTo2(true);
+                    } else {
+                      setSendTo1(!sendTo1);
+                    }
+                  }}
+                  className={`p-3.5 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
+                    sendTo1
+                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/25 ring-1 ring-[#10B981]/50'
+                      : 'bg-[#040E26] border-blue-500/20 text-slate-400 hover:border-slate-500'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                      selectedConsultant === '1' ? 'border-[#10B981] bg-[#10B981]' : 'border-slate-500'
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors ${
+                      sendTo1 ? 'bg-[#10B981] border-[#10B981] text-white' : 'border-slate-500 bg-transparent'
                     }`}>
-                      {selectedConsultant === '1' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-                    </span>
-                    <div>
-                      <div className="text-xs font-bold">Consultor Comercial 1</div>
-                      <div className="text-[11px] text-slate-400 font-mono">{settings.displayPhone || '(11) 95710-9304'}</div>
+                      {sendTo1 && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold flex items-center gap-1.5 flex-wrap">
+                        <span>Consultor Comercial 1</span>
+                        {sendTo1 && (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#10B981]/30 text-emerald-300 font-bold uppercase tracking-wider">
+                            Habilitado
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                        {settings.displayPhone || '(11) 95710-9304'}
+                      </div>
                     </div>
                   </div>
                 </button>
 
+                {/* Consultor 2 */}
                 <button
                   type="button"
-                  onClick={() => setSelectedConsultant('2')}
-                  className={`p-3 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
-                    selectedConsultant === '2'
-                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/20'
-                      : 'bg-[#040E26] border-blue-500/20 text-slate-300 hover:border-slate-500'
+                  onClick={() => {
+                    if (sendTo2 && !sendTo1) {
+                      // Se só o 2 estava ativo, ativa o 1
+                      setSendTo1(true);
+                    } else {
+                      setSendTo2(!sendTo2);
+                    }
+                  }}
+                  className={`p-3.5 rounded-xl border flex items-center justify-between text-left transition-all cursor-pointer ${
+                    sendTo2
+                      ? 'bg-[#10B981]/15 border-[#10B981] text-white shadow-md shadow-[#10B981]/25 ring-1 ring-[#10B981]/50'
+                      : 'bg-[#040E26] border-blue-500/20 text-slate-400 hover:border-slate-500'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                      selectedConsultant === '2' ? 'border-[#10B981] bg-[#10B981]' : 'border-slate-500'
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors ${
+                      sendTo2 ? 'bg-[#10B981] border-[#10B981] text-white' : 'border-slate-500 bg-transparent'
                     }`}>
-                      {selectedConsultant === '2' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-                    </span>
-                    <div>
-                      <div className="text-xs font-bold">Consultor Comercial 2</div>
-                      <div className="text-[11px] text-slate-400 font-mono">{settings.secondaryDisplayPhone || '(11) 98892-1054'}</div>
+                      {sendTo2 && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold flex items-center gap-1.5 flex-wrap">
+                        <span>Consultor Comercial 2</span>
+                        {sendTo2 && (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#10B981]/30 text-emerald-300 font-bold uppercase tracking-wider">
+                            Habilitado
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                        {settings.secondaryDisplayPhone || '(11) 98892-1054'}
+                      </div>
                     </div>
                   </div>
                 </button>
@@ -328,14 +432,26 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                 className="w-full inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-[#10B981] hover:bg-[#059669] shadow-lg shadow-[#10B981]/25 hover:shadow-[#10B981]/40 transition-all active:scale-98 group cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:scale-110 transition-transform shrink-0" />
-                <span className="truncate">Enviar Cotação Diretamente pelo WhatsApp</span>
+                <span className="truncate">
+                  {sendTo1 && sendTo2
+                    ? 'Enviar Cotação para Ambos os Consultores no WhatsApp'
+                    : sendTo1
+                    ? `Enviar Cotação para Consultor 1 (${settings.displayPhone || '(11) 95710-9304'})`
+                    : `Enviar Cotação para Consultor 2 (${settings.secondaryDisplayPhone || '(11) 98892-1054'})`
+                  }
+                </span>
               </button>
             </div>
 
             <div className="text-center pt-1">
               <p className="text-[10px] sm:text-[11px] text-[#94A3B8] flex items-center justify-center gap-1.5 px-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
-                <span>Seus dados são protegidos e enviados diretamente para o atendimento oficial da F&G TI ({settings.displayPhone}).</span>
+                <span>
+                  {sendTo1 && sendTo2
+                    ? `Seus dados serão enviados aos dois consultores oficiais: ${settings.displayPhone || '(11) 95710-9304'} e ${settings.secondaryDisplayPhone || '(11) 98892-1054'}.`
+                    : `Seus dados são protegidos e enviados diretamente para o atendimento da F&G TI.`
+                  }
+                </span>
               </p>
             </div>
 
