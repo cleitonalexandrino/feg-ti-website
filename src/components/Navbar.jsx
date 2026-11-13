@@ -49,34 +49,22 @@ export default function Navbar({ onOpenQuote }) {
     <>
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#060A11]/95 backdrop-blur-md border-b border-white/[0.08] shadow-2xl py-2.5 sm:py-3' 
-          : 'bg-gradient-to-b from-[#060A11]/90 to-transparent py-3 sm:py-5'
+          ? 'bg-[#060A11]/95 backdrop-blur-md border-b border-white/[0.08] shadow-2xl py-2 sm:py-2.5' 
+          : 'bg-gradient-to-b from-[#060A11]/90 to-transparent py-3 sm:py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-3">
             
-            {/* Brand Logo + B2B Badge */}
-            <a href="#inicio" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-              <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden shadow-lg shadow-blue-600/20 group-hover:scale-105 transition-transform duration-300 border border-white/10">
-                <img 
-                  src="/images/logo_fgti.png" 
-                  alt="F&G TI" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg sm:text-xl font-extrabold tracking-tight text-white group-hover:text-blue-400 transition-colors">
-                    F&G TI
-                  </span>
-                  <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-400 border border-blue-500/30">
-                    B2B
-                  </span>
-                </div>
-                <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 -mt-0.5 hidden xs:inline-block">
-                  Soluções em Tecnologia
-                </span>
-              </div>
+            {/* Novo Logotipo Oficial F&G TI */}
+            <a href="#inicio" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
+              <img 
+                src="/images/logo_fgti.png" 
+                alt="F&G TI - Soluções em Tecnologia" 
+                className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-400 border border-blue-500/30 hidden xs:inline-block">
+                B2B
+              </span>
             </a>
 
             {/* Desktop Center Navigation Links */}

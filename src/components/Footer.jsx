@@ -15,22 +15,15 @@ export default function Footer() {
           
           {/* Brand Col */}
           <div className="sm:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-lg shadow-blue-500/20 shrink-0 border border-white/10">
-                <img 
-                  src="/images/logo_fgti.png" 
-                  alt="F&G TI" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-extrabold text-white tracking-tight">
-                  F&G TI
-                </span>
-                <span className="text-[11px] sm:text-xs text-slate-400">
-                  Soluções em Tecnologia
-                </span>
-              </div>
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <img 
+                src="/images/logo_fgti.png" 
+                alt="F&G TI - Soluções em Tecnologia" 
+                className="h-8 sm:h-10 w-auto object-contain"
+              />
+              <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-400 border border-blue-500/30">
+                B2B
+              </span>
             </div>
 
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed max-w-sm">
