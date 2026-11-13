@@ -7,10 +7,10 @@ const AdminContext = createContext();
 const DEFAULT_SETTINGS = {
   phone: '5511957109304',
   displayPhone: '(11) 95710-9304',
-  tagline: 'Entendemos seu negócio. Conectamos soluções.',
-  heroHeadline: 'Entendemos seu negócio.',
-  heroGradientText: 'Conectamos soluções.',
-  heroSubtitle: 'Tecnologia que conecta, soluções que geram resultados. Fornecimento consultivo de Devices, Automação Comercial, Data Center, Cibersegurança, Redes e Licenciamento com os principais fabricantes mundiais.',
+  tagline: 'Tecnologia que simplifica. Parcerias que fortalecem.',
+  heroHeadline: 'Tecnologia que simplifica.',
+  heroGradientText: 'Parcerias que fortalecem.',
+  heroSubtitle: 'Fornecimento consultivo de Devices corporativos, Automação Comercial, Data Center, Cibersegurança, Redes e Licenciamento com mais de 40 fabricantes mundiais homologados.',
   linkedinUrl: 'https://www.linkedin.com/company/fegtiltda/posts/',
   adminPassword: 'admin'
 };

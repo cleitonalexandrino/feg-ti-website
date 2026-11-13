@@ -49,8 +49,8 @@ export default function Navbar({ onOpenQuote }) {
     <>
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#060A11]/95 backdrop-blur-md border-b border-white/[0.08] shadow-2xl py-2 sm:py-2.5' 
-          : 'bg-gradient-to-b from-[#060A11]/90 to-transparent py-3 sm:py-4'
+          ? 'bg-[#020817]/95 backdrop-blur-md border-b border-blue-500/20 shadow-2xl py-2 sm:py-2.5' 
+          : 'bg-gradient-to-b from-[#020817]/90 to-transparent py-3 sm:py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-3">
@@ -76,7 +76,7 @@ export default function Navbar({ onOpenQuote }) {
                   className="text-xs uppercase tracking-wider font-semibold text-slate-300 hover:text-white transition-colors py-1 relative group whitespace-nowrap"
                 >
                   {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-[#F97316] group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0066FF] to-[#FF6A00] group-hover:w-full transition-all duration-300"></span>
                 </a>
               ))}
             </nav>
@@ -95,10 +95,10 @@ export default function Navbar({ onOpenQuote }) {
                 <span className="lg:hidden">WhatsApp</span>
               </button>
 
-              {/* Solid Orange Primary CTA Button */}
+              {/* Solid Solar Orange Primary CTA Button */}
               <button
                 onClick={() => onOpenQuote()}
-                className="inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] shadow-lg shadow-[#F97316]/25 transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap cursor-pointer"
+                className="btn-solar inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-lg shadow-[#FF6A00]/25 transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap cursor-pointer"
               >
                 <span>Solicitar Cotação</span>
                 <ArrowRight className="w-3.5 h-3.5 hidden xs:inline" />
@@ -107,10 +107,10 @@ export default function Navbar({ onOpenQuote }) {
               {/* Mobile / Tablet Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="xl:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
+                className="xl:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-blue-900/30 transition-colors focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
                 aria-label={mobileMenuOpen ? 'Fechar Menu' : 'Abrir Menu'}
               >
-                {mobileMenuOpen ? <X className="w-6 h-6 text-[#F97316]" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-6 h-6 text-[#FF6A00]" /> : <Menu className="w-6 h-6" />}
               </button>
 
             </div>
@@ -127,7 +127,7 @@ export default function Navbar({ onOpenQuote }) {
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="fixed top-14 sm:top-16 left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-[#080D16] border-b border-white/10 p-5 shadow-2xl space-y-4 animate-fadeIn">
+          <div className="fixed top-14 sm:top-16 left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-[#040E26] border-b border-blue-500/20 p-5 shadow-2xl space-y-4 animate-fadeIn">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Menu de Navegação
@@ -137,7 +137,7 @@ export default function Navbar({ onOpenQuote }) {
                   setMobileMenuOpen(false);
                   setIsAdminOpen(true);
                 }}
-                className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/30 flex items-center gap-1 cursor-pointer"
+                className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#FF6A00]/20 text-[#FF6A00] border border-[#FF6A00]/30 flex items-center gap-1 cursor-pointer"
               >
                 <Lock className="w-3 h-3" />
                 <span>Painel Admin</span>
@@ -149,10 +149,10 @@ export default function Navbar({ onOpenQuote }) {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="w-full text-left text-sm sm:text-base font-medium text-slate-200 hover:text-[#F97316] hover:bg-white/[0.04] px-3 py-3 rounded-lg transition-colors flex items-center justify-between cursor-pointer"
+                  className="w-full text-left text-sm sm:text-base font-medium text-slate-200 hover:text-[#FF6A00] hover:bg-white/[0.04] px-3 py-3 rounded-lg transition-colors flex items-center justify-between cursor-pointer"
                 >
                   <span>{link.name}</span>
-                  <span className="text-slate-600 text-xs">→</span>
+                  <span className="text-blue-400 text-xs">→</span>
                 </button>
               ))}
             </nav>
@@ -174,7 +174,7 @@ export default function Navbar({ onOpenQuote }) {
                   setMobileMenuOpen(false);
                   onOpenQuote();
                 }}
-                className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] active:scale-98 transition-transform shadow-lg shadow-[#F97316]/20 cursor-pointer"
+                className="btn-solar w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-bold text-white active:scale-98 transition-transform shadow-lg shadow-[#FF6A00]/20 cursor-pointer"
               >
                 <span>Solicitar Cotação Corporativa</span>
                 <ArrowRight className="w-4 h-4" />

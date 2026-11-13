@@ -41,7 +41,7 @@ export default function App() {
 
   return (
     <AdminProvider>
-      <div className="min-h-screen bg-[#060A11] text-slate-100 flex flex-col font-sans selection:bg-[#F97316] selection:text-white">
+      <div className="min-h-screen bg-[#020817] text-slate-100 flex flex-col font-sans selection:bg-[#FF6A00] selection:text-white">
         {/* Top sticky navigation */}
         <Navbar onOpenQuote={handleOpenQuote} />
 

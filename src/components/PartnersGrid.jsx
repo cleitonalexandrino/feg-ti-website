@@ -20,23 +20,23 @@ export default function PartnersGrid({ onSelectPartner }) {
   }, [partners, selectedCategory, searchTerm]);
 
   return (
-    <section id="fabricantes" className="py-16 sm:py-24 lg:py-28 relative bg-[#060A11] border-t border-white/[0.08]">
+    <section id="fabricantes" className="py-16 sm:py-24 lg:py-28 relative bg-[#020817] border-t border-blue-500/20">
       
       {/* Background radial glow */}
-      <div className="absolute top-1/3 right-0 w-60 sm:w-96 h-60 sm:h-96 bg-[#2563EB]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-60 sm:w-96 h-60 sm:h-96 bg-[#0066FF]/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
         {/* Section Header with Eyebrow Pill */}
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <div className="eyebrow-pill text-blue-400 border-blue-500/30">
-            <Building2 className="w-3.5 h-3.5 text-blue-400" />
+          <div className="eyebrow-pill text-blue-300 border-blue-500/30 bg-[#071738]">
+            <Building2 className="w-3.5 h-3.5 text-[#00D2FF]" />
             <span>ECOSSISTEMA DE PARCEIROS HOMOLOGADOS</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Confira todos os <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-white via-[#FB923C] to-[#F97316] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-[#FFAA44] to-[#FF6A00] bg-clip-text text-transparent">
               fabricantes parceiros oficiais
             </span>
           </h2>
@@ -57,7 +57,7 @@ export default function PartnersGrid({ onSelectPartner }) {
                 placeholder="Buscar por marca (ex: Zebra, Dell, HPE)..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-[#071738] border border-blue-500/20 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
               />
             </div>
 
@@ -65,19 +65,19 @@ export default function PartnersGrid({ onSelectPartner }) {
               {/* Botão rápido para Admin incluir mais marcas */}
               <button
                 onClick={() => setIsAdminOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#F97316]/20 hover:bg-[#F97316]/30 border border-[#F97316]/40 transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#FF6A00]/20 hover:bg-[#FF6A00]/30 border border-[#FF6A00]/40 transition-all cursor-pointer"
                 title="Cadastrar novo fabricante"
               >
-                <Plus className="w-4 h-4 text-[#F97316]" />
+                <Plus className="w-4 h-4 text-[#FF6A00]" />
                 <span>Incluir Fabricante</span>
               </button>
 
               {/* Toggle Original Infographic Modal */}
               <button
                 onClick={() => setShowInfographic(!showInfographic)}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 bg-[#0D1422] border border-white/10 hover:text-white hover:border-slate-600 transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-200 bg-[#071738] border border-blue-500/20 hover:text-white hover:border-blue-400 transition-all cursor-pointer"
               >
-                <ImageIcon className="w-4 h-4 text-[#F97316] shrink-0" />
+                <ImageIcon className="w-4 h-4 text-[#FF6A00] shrink-0" />
                 <span>{showInfographic ? 'Ocultar Infográfico' : 'Infográfico Oficial'}</span>
               </button>
             </div>
@@ -93,8 +93,8 @@ export default function PartnersGrid({ onSelectPartner }) {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 ${
                     isSelected
-                      ? 'bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/30'
-                      : 'bg-[#0D1422] text-slate-400 hover:text-white hover:bg-[#111927] border border-white/[0.08]'
+                      ? 'btn-cobalt text-white shadow-md shadow-[#0066FF]/35'
+                      : 'bg-[#071738] text-slate-300 hover:text-white hover:bg-[#091B42] border border-blue-500/20'
                   }`}
                 >
                   {cat.name}
@@ -107,17 +107,17 @@ export default function PartnersGrid({ onSelectPartner }) {
 
         {/* Infographic Preview (if toggled) */}
         {showInfographic && (
-          <div className="p-3 sm:p-6 rounded-2xl bg-[#0D1422] border border-white/10 shadow-2xl animate-fadeIn space-y-3">
-            <div className="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-white/[0.08]">
+          <div className="p-3 sm:p-6 rounded-2xl bg-[#071738] border border-blue-500/20 shadow-2xl animate-fadeIn space-y-3">
+            <div className="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/[0.08]">
               <span className="font-semibold text-white truncate mr-2">Infográfico Oficial F&G TI: Ecossistema de Parceiros</span>
               <button 
                 onClick={() => setShowInfographic(false)}
-                className="text-[#F97316] hover:text-orange-300 font-bold shrink-0 cursor-pointer"
+                className="text-[#FF6A00] hover:text-[#FFAA44] font-bold shrink-0 cursor-pointer"
               >
                 Fechar ✕
               </button>
             </div>
-            <div className="rounded-xl overflow-hidden bg-[#080D16] max-w-4xl mx-auto border border-white/[0.08]">
+            <div className="rounded-xl overflow-hidden bg-[#040E26] max-w-4xl mx-auto border border-blue-500/20">
               <img 
                 src="/images/parceiros_infografico.jpg" 
                 alt="Infográfico Oficial Fabricantes F&G TI" 
@@ -139,15 +139,15 @@ export default function PartnersGrid({ onSelectPartner }) {
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
                     {partner.image && (
-                      <div className="w-8 h-8 rounded-lg bg-[#080D16] p-1 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                      <div className="w-8 h-8 rounded-lg bg-[#040E26] p-1 border border-blue-500/20 flex items-center justify-center shrink-0 overflow-hidden">
                         <img src={partner.image} alt={partner.name} className="w-full h-full object-contain" />
                       </div>
                     )}
-                    <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-[#F97316] transition-colors truncate">
+                    <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-[#FF6A00] transition-colors truncate">
                       {partner.name}
                     </h4>
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#111927] text-slate-300 border border-white/10 shrink-0">
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#040E26] text-slate-300 border border-blue-500/20 shrink-0">
                     {partner.badge}
                   </span>
                 </div>
@@ -158,12 +158,12 @@ export default function PartnersGrid({ onSelectPartner }) {
 
               {/* Bottom Metadata */}
               <div className="mt-3.5 pt-2.5 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="text-[10px] sm:text-[11px] font-medium text-[#64748B] uppercase">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase">
                   {partner.category}
                 </span>
                 <button
                   onClick={() => onSelectPartner(partner.name)}
-                  className="text-[11px] sm:text-xs font-semibold text-[#F97316] hover:text-orange-300 inline-flex items-center gap-1 group/btn cursor-pointer"
+                  className="text-[11px] sm:text-xs font-semibold text-[#FF6A00] hover:text-[#FFAA44] inline-flex items-center gap-1 group/btn cursor-pointer"
                 >
                   <span>Cotar {partner.name.split(' ')[0]}</span>
                   <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -175,20 +175,20 @@ export default function PartnersGrid({ onSelectPartner }) {
 
         {/* Empty State */}
         {filteredPartners.length === 0 && (
-          <div className="text-center py-10 sm:py-12 rounded-2xl bg-[#0D1422] border border-white/[0.08] space-y-3 px-4">
+          <div className="text-center py-10 sm:py-12 rounded-2xl bg-[#071738] border border-blue-500/20 space-y-3 px-4">
             <p className="text-xs sm:text-sm text-[#94A3B8]">
               Nenhum fabricante encontrado para a busca "{searchTerm}".
             </p>
             <div className="flex justify-center gap-3">
               <button
                 onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}
-                className="text-xs font-bold text-[#F97316] hover:underline cursor-pointer"
+                className="text-xs font-bold text-[#FF6A00] hover:underline cursor-pointer"
               >
                 Limpar filtros
               </button>
               <button
                 onClick={() => setIsAdminOpen(true)}
-                className="text-xs font-bold text-blue-400 hover:underline cursor-pointer"
+                className="text-xs font-bold text-[#00D2FF] hover:underline cursor-pointer"
               >
                 + Incluir esta marca agora
               </button>
@@ -197,7 +197,7 @@ export default function PartnersGrid({ onSelectPartner }) {
         )}
 
         {/* Bottom Fallback Banner */}
-        <div className="rounded-2xl bg-[#0D1422] border border-white/[0.08] p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+        <div className="rounded-2xl bg-[#071738] border border-blue-500/20 p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base sm:text-lg font-bold text-white">
               Não encontrou o equipamento ou marca que procura?
@@ -208,7 +208,7 @@ export default function PartnersGrid({ onSelectPartner }) {
           </div>
           <button
             onClick={() => onSelectPartner('Outras Marcas / Demanda Específica')}
-            className="w-full sm:w-auto whitespace-nowrap px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#2563EB] hover:bg-[#1D4ED8] shadow-lg shadow-[#2563EB]/25 transition-all active:scale-98 cursor-pointer"
+            className="btn-cobalt w-full sm:w-auto whitespace-nowrap px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-lg shadow-[#0066FF]/25 transition-all active:scale-98 cursor-pointer"
           >
             Consultar Demanda Específica
           </button>

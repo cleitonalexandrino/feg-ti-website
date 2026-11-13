@@ -18,13 +18,23 @@ export default function Hero({ onOpenQuote }) {
   ];
 
   return (
-    <section id="inicio" className="relative pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 overflow-hidden bg-[#060A11]">
+    <section id="inicio" className="relative pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32 overflow-hidden bg-[#020817]">
       
+      {/* Official Brand Waves Backdrop Overlay */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <img 
+          src="/images/brand_waves_bg.jpg" 
+          alt="F&G TI Brand Waves" 
+          className="w-full h-full object-cover object-center opacity-40 mix-blend-screen scale-105 filter blur-[0.5px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020817]/70 via-[#020817]/85 to-[#020817]" />
+      </div>
+
       {/* Subtle Radial Ambient Glow */}
       <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[550px] pointer-events-none -z-10"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none -z-10"
         style={{
-          background: 'radial-gradient(circle at 50% 15%, rgba(37, 99, 235, 0.14) 0%, rgba(249, 115, 22, 0.05) 45%, transparent 70%)'
+          background: 'radial-gradient(ellipse at 50% 15%, rgba(0, 102, 255, 0.28) 0%, rgba(255, 106, 0, 0.12) 35%, transparent 70%)'
         }}
       />
 
@@ -33,18 +43,18 @@ export default function Hero({ onOpenQuote }) {
         {/* Main Grid: Headline & Visual Impact */}
         <div className="text-center max-w-4xl mx-auto space-y-6 sm:space-y-8">
           
-          {/* Section Eyebrow Pill */}
-          <div className="eyebrow-pill text-slate-300 shadow-xl max-w-full truncate">
-            <span className="flex h-2 w-2 shrink-0 rounded-full bg-[#F97316] animate-ping" />
-            <span className="text-white font-bold tracking-wider">F&G TECNOLOGIA DA INFORMAÇÃO LTDA</span>
-            <span className="text-slate-600 hidden sm:inline">|</span>
-            <span className="text-blue-400 font-semibold hidden sm:inline">CONSULTORIA B2B</span>
+          {/* Section Eyebrow Pill with Official Slogan */}
+          <div className="eyebrow-pill text-slate-300 shadow-xl max-w-full truncate border-blue-500/30 bg-[#071738]/85">
+            <span className="flex h-2 w-2 shrink-0 rounded-full bg-[#FF6A00] animate-ping" />
+            <span className="text-white font-bold tracking-wider">TECNOLOGIA QUE SIMPLIFICA</span>
+            <span className="text-blue-400 font-bold hidden xs:inline">·</span>
+            <span className="text-[#FF8800] font-bold hidden xs:inline">PARCERIAS QUE FORTALECEM</span>
           </div>
 
-          {/* Signature Headline Treatment: Crisp Pure White + Warm Amber-Orange Split Gradient */}
+          {/* Signature Headline Treatment: Crisp Pure White + Solar Flare Orange Split Gradient */}
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12]">
             {settings.heroHeadline} <br />
-            <span className="bg-gradient-to-r from-white via-[#FB923C] to-[#F97316] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-[#FFAA44] to-[#FF6A00] bg-clip-text text-transparent">
               {settings.heroGradientText}
             </span>
           </h1>
@@ -58,7 +68,7 @@ export default function Hero({ onOpenQuote }) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 px-2 sm:px-0">
             <button
               onClick={() => onOpenQuote()}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-[#F97316] hover:bg-[#EA580C] shadow-xl shadow-[#F97316]/25 transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
+              className="btn-solar w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white shadow-xl shadow-[#FF6A00]/25 transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
             >
               <span>Solicitar Cotação Rápida</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -66,7 +76,7 @@ export default function Hero({ onOpenQuote }) {
 
             <button
               onClick={handleWhatsApp}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-white bg-[#0D1422] hover:bg-[#111927] border border-white/10 hover:border-[#10B981]/50 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-white bg-[#071738] hover:bg-[#091B42] border border-blue-500/25 hover:border-[#10B981]/50 shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-[#10B981]" />
               <span>WhatsApp: {settings.displayPhone}</span>
@@ -77,12 +87,12 @@ export default function Hero({ onOpenQuote }) {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.04] transition-colors"
             >
               <span>Ver Fabricantes Parceiros</span>
-              <span className="text-[#3B82F6]">↓</span>
+              <span className="text-[#00D2FF]">↓</span>
             </a>
           </div>
 
           {/* Micro-Trust Checkmarks Row */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 lg:gap-10 text-xs sm:text-sm text-slate-400 font-medium">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 lg:gap-10 text-xs sm:text-sm text-slate-300 font-medium">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
               <span>Garantia Oficial Direta</span>
@@ -106,7 +116,7 @@ export default function Hero({ onOpenQuote }) {
               key={idx} 
               className="enterprise-card relative p-4 sm:p-5 lg:p-6 rounded-2xl hover:-translate-y-1 group"
             >
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-[#F97316] transition-colors">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-[#FF6A00] transition-colors">
                 {item.number}
               </div>
               <div className="text-xs sm:text-sm font-bold text-white mt-1 leading-snug">

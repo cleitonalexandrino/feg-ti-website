@@ -16,7 +16,7 @@ export default function WhatsAppFloat() {
       
       {/* Tooltip message */}
       {showTooltip && (
-        <div className="bg-[#0D1422] border border-white/10 p-3 rounded-2xl shadow-2xl max-w-[240px] sm:max-w-xs text-[11px] sm:text-xs text-slate-200 animate-fadeIn relative backdrop-blur-md">
+        <div className="bg-[#071738] border border-blue-500/25 p-3 rounded-2xl shadow-2xl max-w-[240px] sm:max-w-xs text-[11px] sm:text-xs text-slate-200 animate-fadeIn relative backdrop-blur-md">
           <button 
             onClick={() => setShowTooltip(false)}
             className="absolute top-2 right-2 text-slate-400 hover:text-white cursor-pointer"

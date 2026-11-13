@@ -7,7 +7,7 @@ export default function Footer() {
   const { settings, setIsAdminOpen } = useAdmin();
 
   return (
-    <footer className="bg-[#04070D] border-t border-white/[0.08] text-[#94A3B8] text-xs sm:text-sm">
+    <footer className="bg-[#020612] border-t border-blue-500/20 text-[#94A3B8] text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-10 sm:space-y-12">
         
         {/* Main Footer Grid */}
@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed max-w-sm">
-              <strong className="text-white">F&G TECNOLOGIA DA INFORMACAO LTDA</strong>. {settings.tagline} Fornecimento corporativo de hardware, infraestrutura de rede, cibersegurança, automação e licenciamento com os maiores fabricantes globais.
+              <strong className="text-white">F&G TECNOLOGIA DA INFORMACAO LTDA</strong>. Tecnologia que simplifica. Parcerias que fortalecem. Fornecimento corporativo de hardware, infraestrutura de rede, cibersegurança, automação e licenciamento com os maiores fabricantes globais.
             </p>
 
             <div className="pt-1 flex flex-wrap items-center gap-3">
@@ -35,7 +35,7 @@ export default function Footer() {
                 href={settings.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0077B5]/15 border border-[#0077B5]/30 text-xs font-semibold text-[#0077B5] hover:bg-[#0077B5]/25 transition-all"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#0077B5]/15 border border-[#0077B5]/30 text-xs font-semibold text-[#38BDF8] hover:bg-[#0077B5]/25 transition-all"
               >
                 <span>LinkedIn F&G TI</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -44,10 +44,10 @@ export default function Footer() {
               {/* Botão de Acesso Administrativo para o Cliente */}
               <button
                 onClick={() => setIsAdminOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#071738] hover:bg-[#091B42] border border-blue-500/25 text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer"
                 title="Acessar painel para editar produtos, marcas e informações"
               >
-                <Lock className="w-3.5 h-3.5 text-[#F97316]" />
+                <Lock className="w-3.5 h-3.5 text-[#FF6A00]" />
                 <span>Área Restrita / Admin</span>
               </button>
             </div>
@@ -59,13 +59,13 @@ export default function Footer() {
               Navegação
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#inicio" className="hover:text-blue-400 transition-colors py-1 inline-block">Início</a></li>
-              <li><a href="#desafios" className="hover:text-blue-400 transition-colors py-1 inline-block">Dores do Gestor de TI</a></li>
-              <li><a href="#solucoes" className="hover:text-blue-400 transition-colors py-1 inline-block">7 Pilares de Soluções</a></li>
-              <li><a href="#fabricantes" className="hover:text-blue-400 transition-colors py-1 inline-block">Ecossistema de Fabricantes</a></li>
-              <li><a href="#destaques" className="hover:text-blue-400 transition-colors py-1 inline-block">Destaques Zebra & Aruba</a></li>
-              <li><a href="#diferenciais" className="hover:text-blue-400 transition-colors py-1 inline-block">Por que a F&G TI?</a></li>
-              <li><a href="#contato" className="hover:text-blue-400 transition-colors py-1 inline-block">Solicitar Cotação</a></li>
+              <li><a href="#inicio" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Início</a></li>
+              <li><a href="#desafios" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Dores do Gestor de TI</a></li>
+              <li><a href="#solucoes" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">7 Pilares de Soluções</a></li>
+              <li><a href="#fabricantes" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Ecossistema de Fabricantes</a></li>
+              <li><a href="#destaques" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Destaques Zebra & Aruba</a></li>
+              <li><a href="#diferenciais" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Por que a F&G TI?</a></li>
+              <li><a href="#contato" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Solicitar Cotação</a></li>
             </ul>
           </div>
 
@@ -102,12 +102,12 @@ export default function Footer() {
               </a>
 
               <div className="flex items-start gap-2 text-[#94A3B8]">
-                <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                <ShieldCheck className="w-4 h-4 text-[#00D2FF] shrink-0 mt-0.5" />
                 <span>Atendimento Consultivo Especializado para Empresas (B2B)</span>
               </div>
 
               <div className="flex items-start gap-2 text-[#94A3B8]">
-                <MapPin className="w-4 h-4 text-[#F97316] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#FF6A00] shrink-0 mt-0.5" />
                 <span>Atendimento e Distribuição em Todo o Território Nacional</span>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal Notice */}
-        <div className="pt-6 sm:pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-[#64748B] text-center sm:text-left">
+        <div className="pt-6 sm:pt-8 border-t border-blue-500/15 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-[#64748B] text-center sm:text-left">
           <div>
             © {currentYear} F&G TECNOLOGIA DA INFORMACAO LTDA. Todos os direitos reservados.
           </div>
@@ -125,7 +125,7 @@ export default function Footer() {
             <span>•</span>
             <span>Termos de Uso</span>
             <span>•</span>
-            <span className="text-slate-400">Tecnologia que conecta, soluções que geram resultados.</span>
+            <span className="text-slate-300 font-medium">Tecnologia que simplifica. Parcerias que fortalecem.</span>
           </div>
         </div>
 

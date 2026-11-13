@@ -81,23 +81,23 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
   };
 
   return (
-    <section id="contato" className="py-16 sm:py-24 lg:py-28 relative bg-[#060A11] border-t border-white/[0.08]">
+    <section id="contato" className="py-16 sm:py-24 lg:py-28 relative bg-[#020817] border-t border-blue-500/20">
       
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#2563EB]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#0066FF]/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header with Eyebrow Pill */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3 sm:space-y-4">
-          <div className="eyebrow-pill text-[#F97316] border-[#F97316]/30">
-            <Sparkles className="w-3.5 h-3.5 text-[#F97316]" />
+          <div className="eyebrow-pill text-[#FF6A00] border-[#FF6A00]/30 bg-[#071738]">
+            <Sparkles className="w-3.5 h-3.5 text-[#FF6A00]" />
             <span>ENGENHARIA COMERCIAL & COTAÇÃO B2B</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Solicite sua cotação <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-white via-[#FB923C] to-[#F97316] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-[#FFAA44] to-[#FF6A00] bg-clip-text text-transparent">
               corporativa com a F&G TI
             </span>
           </h2>
@@ -107,7 +107,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
         </div>
 
         {/* Structured Dark Form Card */}
-        <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-[#0D1422] border border-white/[0.08] p-5 sm:p-8 lg:p-12 shadow-2xl backdrop-blur-md">
+        <div className="max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-[#071738] border border-blue-500/25 p-5 sm:p-8 lg:p-12 shadow-2xl backdrop-blur-md">
           
           {dispatched && (
             <div className="mb-6 p-4 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-between text-xs sm:text-sm text-emerald-300 animate-fadeIn">
@@ -131,7 +131,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
               {/* Nome */}
               <div className="space-y-1">
                 <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <User className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
                   <span>Nome Completo *</span>
                 </label>
                 <input
@@ -141,14 +141,14 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="Seu nome completo"
                   value={formData.nome}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
               {/* Cargo */}
               <div className="space-y-1">
                 <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <Building2 className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
                   <span>Cargo / Função</span>
                 </label>
                 <input
@@ -157,14 +157,14 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="Ex: Gestor de TI, Gerente de Infraestrutura, Compras"
                   value={formData.cargo}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
               {/* Empresa */}
               <div className="space-y-1">
                 <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <Building2 className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
                   <span>Nome da Empresa *</span>
                 </label>
                 <input
@@ -174,7 +174,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="Razão social ou nome fantasia"
                   value={formData.empresa}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
@@ -189,14 +189,14 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="00.000.000/0000-00"
                   value={formData.cnpj}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
               {/* Email Corporativo */}
               <div className="space-y-1">
                 <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <Mail className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
                   <span>E-mail Corporativo *</span>
                 </label>
                 <input
@@ -206,7 +206,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="voce@suaempresa.com.br"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
@@ -223,7 +223,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                   placeholder="(11) 90000-0000"
                   value={formData.telefone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
                 />
               </div>
 
@@ -238,10 +238,10 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                 name="categoria"
                 value={formData.categoria}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
               >
                 {categories.map((cat, idx) => (
-                  <option key={idx} value={cat} className="bg-[#080D16] text-white">
+                  <option key={idx} value={cat} className="bg-[#040E26] text-white">
                     {cat}
                   </option>
                 ))}
@@ -251,7 +251,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
             {/* Mensagem / Demanda */}
             <div className="space-y-1">
               <label className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                <MessageSquare className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <MessageSquare className="w-3.5 h-3.5 text-[#00D2FF] shrink-0" />
                 <span>Descrição da Demanda / Lista de Equipamentos Desejada</span>
               </label>
               <textarea
@@ -260,7 +260,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
                 placeholder="Ex: Cotação de 20 coletores de dados Zebra TC21, 5 switches gerenciáveis HPE Aruba CX 6100 e 15 notebooks corporativos Dell com faturamento PJ 30/60 dias."
                 value={formData.mensagem}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316] transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-blue-500/25 text-base sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00] transition-all"
               />
             </div>
 
@@ -276,7 +276,7 @@ ${formData.mensagem || 'Gostaria de falar com um consultor comercial.'}`;
             </div>
 
             <div className="text-center pt-1">
-              <p className="text-[10px] sm:text-[11px] text-[#64748B] flex items-center justify-center gap-1.5 px-2">
+              <p className="text-[10px] sm:text-[11px] text-[#94A3B8] flex items-center justify-center gap-1.5 px-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
                 <span>Seus dados são protegidos e enviados diretamente para o atendimento oficial da F&G TI ({settings.displayPhone}).</span>
               </p>

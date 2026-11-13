@@ -7,23 +7,35 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Deep Midnight Cobalt brand palette (F&G TI Key Visual)
+        brand: {
+          bg: '#020817',        // Deep space midnight
+          deep: '#040E26',      // Section background
+          surface: '#071738',   // Container surface
+          card: '#091B42',      // Elevated glass card
+          cardHover: '#0D255C', // Hover card
+          navy: '#0A225A',      // Pure brand cobalt
+        },
+        // Backwards-compatible mappings for existing components
         obsidian: {
-          950: '#060A11',
-          900: '#080D16',
-          800: '#0F1626',
+          950: '#020817',
+          900: '#040E26',
+          800: '#071738',
         },
         navy: {
-          slate: '#0D1422',
-          surface: '#111927',
-          card: '#131E33',
+          slate: '#071738',
+          surface: '#091B42',
+          card: '#0C2356',
         },
         accent: {
-          orange: '#F97316',
-          orangeDark: '#EA580C',
-          orangeGlow: 'rgba(249, 115, 22, 0.35)',
-          blue: '#2563EB',
-          blueLight: '#3B82F6',
-          blueGlow: 'rgba(37, 99, 235, 0.3)',
+          orange: '#FF6A00',
+          orangeDark: '#E55A00',
+          orangeLight: '#FF8800',
+          orangeGlow: 'rgba(255, 106, 0, 0.45)',
+          blue: '#0066FF',
+          blueLight: '#38BDF8',
+          blueDark: '#1446B7',
+          blueGlow: 'rgba(0, 102, 255, 0.35)',
           emerald: '#10B981',
           emeraldDark: '#059669',
         },
@@ -32,11 +44,13 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       backgroundImage: {
-        'obsidian-radial': 'radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.14) 0%, rgba(6, 10, 17, 0.98) 70%)',
-        'orange-gradient': 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
-        'blue-gradient': 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
-        'headline-orange': 'linear-gradient(90deg, #FFFFFF 30%, #FB923C 70%, #F97316 100%)',
-        'headline-blue': 'linear-gradient(90deg, #FFFFFF 30%, #60A5FA 70%, #3B82F6 100%)',
+        'obsidian-radial': 'radial-gradient(ellipse at 50% -10%, rgba(0, 102, 255, 0.22) 0%, rgba(2, 8, 23, 0.98) 75%)',
+        'brand-radial': 'radial-gradient(ellipse at 50% -10%, rgba(0, 102, 255, 0.22) 0%, rgba(2, 8, 23, 0.98) 75%)',
+        'orange-gradient': 'linear-gradient(135deg, #FF6A00 0%, #FF8800 100%)',
+        'blue-gradient': 'linear-gradient(135deg, #0066FF 0%, #1446B7 100%)',
+        'headline-orange': 'linear-gradient(90deg, #FFFFFF 20%, #FFAA44 70%, #FF6A00 100%)',
+        'headline-blue': 'linear-gradient(90deg, #FFFFFF 20%, #60A5FA 70%, #0066FF 100%)',
+        'ribbon-glow': 'radial-gradient(circle at 10% 20%, rgba(255, 106, 0, 0.15) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.18) 0%, transparent 50%)',
       }
     },
   },

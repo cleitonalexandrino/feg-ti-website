@@ -146,12 +146,12 @@ export default function AdminModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-[#0D1422] border border-white/15 shadow-2xl overflow-hidden text-slate-200">
+      <div className="relative w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-[#071738] border border-white/15 shadow-2xl overflow-hidden text-slate-200">
         
         {/* Top Header */}
-        <div className="px-5 py-4 sm:px-8 sm:py-5 border-b border-white/10 flex items-center justify-between bg-[#080D16]">
+        <div className="px-5 py-4 sm:px-8 sm:py-5 border-b border-white/10 flex items-center justify-between bg-[#040E26]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#F97316]/15 border border-[#F97316]/30 flex items-center justify-center text-[#F97316]">
+            <div className="w-9 h-9 rounded-xl bg-[#FF6A00]/15 border border-[#FF6A00]/30 flex items-center justify-center text-[#FF6A00]">
               <Settings className="w-5 h-5" />
             </div>
             <div>
@@ -207,7 +207,7 @@ export default function AdminModal() {
                 placeholder="Senha de acesso (Padrão: admin ou fgti2026)"
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-[#080D16] border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]"
+                className="w-full px-4 py-3 rounded-xl bg-[#040E26] border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#FF6A00] focus:ring-1 focus:ring-[#FF6A00]"
               />
 
               {authError && (
@@ -218,7 +218,7 @@ export default function AdminModal() {
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] transition-all cursor-pointer shadow-lg shadow-[#F97316]/20"
+                className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-[#FF6A00] hover:bg-[#E55A00] transition-all cursor-pointer shadow-lg shadow-[#FF6A00]/20"
               >
                 Entrar no Painel
               </button>
@@ -229,12 +229,12 @@ export default function AdminModal() {
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
             
             {/* Tabs Bar */}
-            <div className="flex items-center gap-2 px-5 sm:px-8 py-3 bg-[#080D16]/60 border-b border-white/[0.08] overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-2 px-5 sm:px-8 py-3 bg-[#040E26]/60 border-b border-white/[0.08] overflow-x-auto no-scrollbar">
               <button
                 onClick={() => setActiveTab('partners')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap cursor-pointer transition-colors ${
                   activeTab === 'partners' 
-                    ? 'bg-[#F97316] text-white shadow-md shadow-[#F97316]/20' 
+                    ? 'bg-[#FF6A00] text-white shadow-md shadow-[#FF6A00]/20' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -246,7 +246,7 @@ export default function AdminModal() {
                 onClick={() => setActiveTab('solutions')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap cursor-pointer transition-colors ${
                   activeTab === 'solutions' 
-                    ? 'bg-[#F97316] text-white shadow-md shadow-[#F97316]/20' 
+                    ? 'bg-[#FF6A00] text-white shadow-md shadow-[#FF6A00]/20' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -258,7 +258,7 @@ export default function AdminModal() {
                 onClick={() => setActiveTab('settings')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap cursor-pointer transition-colors ${
                   activeTab === 'settings' 
-                    ? 'bg-[#F97316] text-white shadow-md shadow-[#F97316]/20' 
+                    ? 'bg-[#FF6A00] text-white shadow-md shadow-[#FF6A00]/20' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -270,7 +270,7 @@ export default function AdminModal() {
                 onClick={() => setActiveTab('backup')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap cursor-pointer transition-colors ${
                   activeTab === 'backup' 
-                    ? 'bg-[#F97316] text-white shadow-md shadow-[#F97316]/20' 
+                    ? 'bg-[#FF6A00] text-white shadow-md shadow-[#FF6A00]/20' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -287,10 +287,10 @@ export default function AdminModal() {
                 <div className="space-y-8">
                   
                   {/* Add New Partner Form with Image */}
-                  <div className="p-5 sm:p-6 rounded-2xl bg-[#080D16] border border-white/10 space-y-4">
+                  <div className="p-5 sm:p-6 rounded-2xl bg-[#040E26] border border-white/10 space-y-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                        <Plus className="w-4 h-4 text-[#F97316]" />
+                        <Plus className="w-4 h-4 text-[#FF6A00]" />
                         <span>Cadastrar Novo Fabricante / Produto com Imagem</span>
                       </h4>
                       {partnerSuccess && (
@@ -311,7 +311,7 @@ export default function AdminModal() {
                             placeholder="Ex: Cisco, Fortinet, Asus..."
                             value={newPartner.name}
                             onChange={(e) => setNewPartner({ ...newPartner, name: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#071738] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                           />
                         </div>
 
@@ -320,7 +320,7 @@ export default function AdminModal() {
                           <select
                             value={newPartner.category}
                             onChange={(e) => setNewPartner({ ...newPartner, category: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#071738] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                           >
                             {categories.filter(c => c.id !== 'all').map(c => (
                               <option key={c.id} value={c.id}>{c.name}</option>
@@ -335,14 +335,14 @@ export default function AdminModal() {
                             placeholder="Ex: Homologado, Oficial..."
                             value={newPartner.badge}
                             onChange={(e) => setNewPartner({ ...newPartner, badge: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#071738] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                           />
                         </div>
 
                         <div className="sm:col-span-2">
                           <button
                             type="submit"
-                            className="w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] transition-all cursor-pointer shadow-md shadow-[#F97316]/20 flex items-center justify-center gap-1.5"
+                            className="w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#FF6A00] hover:bg-[#E55A00] transition-all cursor-pointer shadow-md shadow-[#FF6A00]/20 flex items-center justify-center gap-1.5"
                           >
                             <Plus className="w-4 h-4" />
                             <span>Adicionar</span>
@@ -356,22 +356,22 @@ export default function AdminModal() {
                             placeholder="Ex: Switches gerenciáveis, roteadores de alta capacidade e firewalls corporativos."
                             value={newPartner.desc}
                             onChange={(e) => setNewPartner({ ...newPartner, desc: e.target.value })}
-                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                            className="w-full px-3.5 py-2.5 rounded-xl bg-[#071738] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                           />
                         </div>
                       </div>
 
                       {/* Image Upload Row */}
-                      <div className="p-3.5 rounded-xl bg-[#0D1422] border border-white/[0.08] flex flex-col sm:flex-row items-center gap-4">
+                      <div className="p-3.5 rounded-xl bg-[#071738] border border-white/[0.08] flex flex-col sm:flex-row items-center gap-4">
                         <div className="flex-1 space-y-1 w-full">
                           <label className="text-[11px] font-bold text-slate-300 uppercase flex items-center gap-1.5">
-                            <ImageIcon className="w-3.5 h-3.5 text-[#F97316]" />
+                            <ImageIcon className="w-3.5 h-3.5 text-[#FF6A00]" />
                             <span>Logo / Imagem do Fabricante ou Produto (Opcional)</span>
                           </label>
                           
                           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                            <label className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-[#080D16] border border-white/10 text-xs font-semibold text-slate-300 hover:text-white hover:border-[#F97316] cursor-pointer transition-all">
-                              <Upload className="w-3.5 h-3.5 text-[#F97316]" />
+                            <label className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-[#040E26] border border-white/10 text-xs font-semibold text-slate-300 hover:text-white hover:border-[#FF6A00] cursor-pointer transition-all">
+                              <Upload className="w-3.5 h-3.5 text-[#FF6A00]" />
                               <span>Escolher Foto do Computador</span>
                               <input
                                 type="file"
@@ -388,7 +388,7 @@ export default function AdminModal() {
                               placeholder="https://exemplo.com/logo.png"
                               value={newPartner.image}
                               onChange={(e) => setNewPartner({ ...newPartner, image: e.target.value })}
-                              className="flex-1 px-3 py-1.5 rounded-xl bg-[#080D16] border border-white/10 text-xs text-white focus:outline-none focus:border-[#F97316]"
+                              className="flex-1 px-3 py-1.5 rounded-xl bg-[#040E26] border border-white/10 text-xs text-white focus:outline-none focus:border-[#FF6A00]"
                             />
                           </div>
                         </div>
@@ -396,7 +396,7 @@ export default function AdminModal() {
                         {/* Image Preview */}
                         {newPartner.image && (
                           <div className="flex items-center gap-2 shrink-0">
-                            <div className="w-12 h-12 rounded-xl bg-[#080D16] border border-white/15 p-1 flex items-center justify-center overflow-hidden">
+                            <div className="w-12 h-12 rounded-xl bg-[#040E26] border border-white/15 p-1 flex items-center justify-center overflow-hidden">
                               <img src={newPartner.image} alt="Preview" className="w-full h-full object-contain" />
                             </div>
                             <button
@@ -425,7 +425,7 @@ export default function AdminModal() {
                           placeholder="Filtrar marcas..."
                           value={partnerSearch}
                           onChange={(e) => setPartnerSearch(e.target.value)}
-                          className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#080D16] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#F97316]"
+                          className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#040E26] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
                     </div>
@@ -434,12 +434,12 @@ export default function AdminModal() {
                       {filteredPartners.map((p, idx) => (
                         <div
                           key={idx}
-                          className="p-3.5 rounded-xl bg-[#080D16] border border-white/[0.08] flex items-start justify-between gap-2 group"
+                          className="p-3.5 rounded-xl bg-[#040E26] border border-white/[0.08] flex items-start justify-between gap-2 group"
                         >
                           <div className="space-y-1 min-w-0">
                             <div className="flex items-center gap-2">
                               {p.image && (
-                                <div className="w-6 h-6 rounded bg-[#0D1422] p-0.5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                                <div className="w-6 h-6 rounded bg-[#071738] p-0.5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
                                   <img src={p.image} alt={p.name} className="w-full h-full object-contain" />
                                 </div>
                               )}
@@ -486,7 +486,7 @@ export default function AdminModal() {
                           className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-colors ${
                             selectedSolutionId === s.id
                               ? 'bg-blue-600 text-white shadow-md'
-                              : 'bg-[#080D16] text-slate-400 hover:text-white border border-white/10'
+                              : 'bg-[#040E26] text-slate-400 hover:text-white border border-white/10'
                           }`}
                         >
                           {s.title.split('&')[0]}
@@ -499,7 +499,7 @@ export default function AdminModal() {
                   {(() => {
                     const currentSol = solutions.find(s => s.id === selectedSolutionId) || solutions[0];
                     return (
-                      <div className="p-5 rounded-2xl bg-[#080D16] border border-white/10 space-y-4">
+                      <div className="p-5 rounded-2xl bg-[#040E26] border border-white/10 space-y-4">
                         <div className="flex items-center justify-between border-b border-white/10 pb-3">
                           <div>
                             <h4 className="text-sm font-bold text-white">{currentSol.title}</h4>
@@ -515,11 +515,11 @@ export default function AdminModal() {
                             placeholder="Ex: Novos coletores industriais com leitor 2D de longo alcance..."
                             value={newHighlightText}
                             onChange={(e) => setNewHighlightText(e.target.value)}
-                            className="flex-1 px-3.5 py-2 rounded-xl bg-[#0D1422] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                            className="flex-1 px-3.5 py-2 rounded-xl bg-[#071738] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                           />
                           <button
                             type="submit"
-                            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] cursor-pointer flex items-center gap-1.5 shrink-0"
+                            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#FF6A00] hover:bg-[#E55A00] cursor-pointer flex items-center gap-1.5 shrink-0"
                           >
                             <Plus className="w-4 h-4" />
                             <span>Adicionar Item</span>
@@ -533,7 +533,7 @@ export default function AdminModal() {
                             {currentSol.highlights.map((h, idx) => (
                               <div
                                 key={idx}
-                                className="flex items-center justify-between p-2.5 rounded-lg bg-[#0D1422] border border-white/[0.06] text-xs text-slate-300"
+                                className="flex items-center justify-between p-2.5 rounded-lg bg-[#071738] border border-white/[0.06] text-xs text-slate-300"
                               >
                                 <div className="flex items-center gap-2">
                                   <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981] shrink-0" />
@@ -581,7 +581,7 @@ export default function AdminModal() {
                           required
                           value={tempSettings.phone}
                           onChange={(e) => setTempSettings({ ...tempSettings, phone: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
@@ -592,7 +592,7 @@ export default function AdminModal() {
                           required
                           value={tempSettings.displayPhone}
                           onChange={(e) => setTempSettings({ ...tempSettings, displayPhone: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
@@ -603,7 +603,7 @@ export default function AdminModal() {
                           required
                           value={tempSettings.tagline}
                           onChange={(e) => setTempSettings({ ...tempSettings, tagline: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
@@ -613,7 +613,7 @@ export default function AdminModal() {
                           rows={3}
                           value={tempSettings.heroSubtitle}
                           onChange={(e) => setTempSettings({ ...tempSettings, heroSubtitle: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
@@ -623,7 +623,7 @@ export default function AdminModal() {
                           type="url"
                           value={tempSettings.linkedinUrl}
                           onChange={(e) => setTempSettings({ ...tempSettings, linkedinUrl: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#080D16] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#F97316]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#040E26] border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6A00]"
                         />
                       </div>
 
@@ -631,7 +631,7 @@ export default function AdminModal() {
 
                     <button
                       type="submit"
-                      className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] cursor-pointer shadow-lg shadow-[#F97316]/20 flex items-center gap-2"
+                      className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#FF6A00] hover:bg-[#E55A00] cursor-pointer shadow-lg shadow-[#FF6A00]/20 flex items-center gap-2"
                     >
                       <Save className="w-4 h-4" />
                       <span>Salvar Alterações</span>
@@ -645,7 +645,7 @@ export default function AdminModal() {
               {activeTab === 'backup' && (
                 <div className="space-y-6">
                   
-                  <div className="p-5 rounded-2xl bg-[#080D16] border border-white/10 space-y-4">
+                  <div className="p-5 rounded-2xl bg-[#040E26] border border-white/10 space-y-4">
                     <h4 className="text-sm font-bold text-white">Como Funciona o Armazenamento Atual:</h4>
                     <p className="text-xs text-slate-300 leading-relaxed">
                       Atualmente, as alterações feitas neste painel são salvas no <strong>armazenamento local (LocalStorage)</strong> do seu navegador de forma instantânea.
@@ -663,8 +663,8 @@ export default function AdminModal() {
                         <span>Baixar Backup Completo (.JSON)</span>
                       </button>
 
-                      <label className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 bg-[#0D1422] border border-white/10 hover:text-white hover:bg-white/5 cursor-pointer flex items-center gap-2">
-                        <Upload className="w-4 h-4 text-[#F97316]" />
+                      <label className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 bg-[#071738] border border-white/10 hover:text-white hover:bg-white/5 cursor-pointer flex items-center gap-2">
+                        <Upload className="w-4 h-4 text-[#FF6A00]" />
                         <span>Restaurar Backup</span>
                         <input
                           type="file"
