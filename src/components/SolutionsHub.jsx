@@ -19,7 +19,8 @@ import {
   Network,
   Sparkles,
   PhoneCall,
-  ShieldCheck
+  ShieldCheck,
+  X
 } from 'lucide-react';
 
 const iconMap = {
@@ -35,7 +36,11 @@ const iconMap = {
 export default function SolutionsHub({ onSelectCategory }) {
   const { solutions, settings, setIsAdminOpen } = useAdmin();
   const [activeTab, setActiveTab] = useState('devices');
-  const [aristaVisualTab, setAristaVisualTab] = useState('hardware');
+  const [aristaVisualTab, setAristaVisualTab] = useState(null);
+
+  const toggleAristaVisualTab = (tab) => {
+    setAristaVisualTab(prev => (prev === tab ? null : tab));
+  };
 
   useEffect(() => {
     const handleHash = () => {
@@ -391,8 +396,8 @@ export default function SolutionsHub({ onSelectCategory }) {
               </div>
 
               {/* Visualizador Gráfico Oficial com Abas */}
-              <div className="rounded-2xl bg-[#091B42]/90 border border-blue-500/25 p-4 sm:p-6 space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-blue-500/20 pb-3">
+              <div className="rounded-2xl bg-[#091B42]/90 border border-blue-500/25 p-4 sm:p-5 space-y-4">
+                <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ${aristaVisualTab ? 'border-b border-blue-500/20 pb-3' : ''}`}>
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-[#00D2FF]" />
                     <span className="text-xs sm:text-sm font-bold text-white">
@@ -403,60 +408,88 @@ export default function SolutionsHub({ onSelectCategory }) {
                   {/* Seletor de Abas Gráficas */}
                   <div className="flex items-center gap-1.5 bg-[#071738] p-1 rounded-xl border border-blue-500/25">
                     <button
-                      onClick={() => setAristaVisualTab('hardware')}
+                      onClick={() => toggleAristaVisualTab('hardware')}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                         aristaVisualTab === 'hardware'
                           ? 'bg-[#0066FF] text-white shadow'
-                          : 'text-slate-400 hover:text-white'
+                          : 'text-slate-300 hover:text-white hover:bg-white/5'
                       }`}
+                      title={aristaVisualTab === 'hardware' ? "Clique para ocultar imagem" : "Clique para visualizar equipamentos"}
                     >
                       Equipamentos (SD-WAN, Campus & Wi-Fi)
                     </button>
                     <button
-                      onClick={() => setAristaVisualTab('architecture')}
+                      onClick={() => toggleAristaVisualTab('architecture')}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                         aristaVisualTab === 'architecture'
                           ? 'bg-[#0066FF] text-white shadow'
-                          : 'text-slate-400 hover:text-white'
+                          : 'text-slate-300 hover:text-white hover:bg-white/5'
                       }`}
+                      title={aristaVisualTab === 'architecture' ? "Clique para ocultar imagem" : "Clique para visualizar topologia"}
                     >
                       Topologia Unificada (Filiais, Campus & DC)
                     </button>
+                    
+                    {aristaVisualTab && (
+                      <button
+                        onClick={() => setAristaVisualTab(null)}
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors ml-1 cursor-pointer"
+                        title="Ocultar imagem"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                   </div>
                 </div>
 
-                {/* Exibição da Imagem Técnica */}
-                <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-inner">
-                  {aristaVisualTab === 'hardware' ? (
-                    <div className="relative group">
-                      <img 
-                        src="/images/arista_portfolio_hardware.png" 
-                        alt="Portfólio de Equipamentos Arista Networks: SD-WAN, Switches Campus PoE e Wi-Fi 7"
-                        className="w-full h-auto max-h-[440px] object-contain mx-auto bg-white/95 rounded-lg p-2"
-                        loading="lazy"
-                      />
-                      <div className="p-2 sm:p-3 text-center bg-[#071738]/95 border-t border-blue-500/20">
-                        <span className="text-[11px] sm:text-xs text-slate-300 font-medium">
-                          <strong>Arista Cognitive Unified Edge (CUE):</strong> VeloCloud SD-WAN + Switches Séries 710P/720XP PoE++ + Wi-Fi 7 C-460/C-430 com gestão CloudVision
-                        </span>
+                {/* Exibição da Imagem Técnica (Aparece APENAS quando clicado nos botões; enquanto não clicado, fica oculto) */}
+                {aristaVisualTab && (
+                  <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-white/10 shadow-inner">
+                    {aristaVisualTab === 'hardware' ? (
+                      <div className="relative group">
+                        <img 
+                          src="/images/arista_portfolio_hardware.png" 
+                          alt="Portfólio de Equipamentos Arista Networks: SD-WAN, Switches Campus PoE e Wi-Fi 7"
+                          className="w-full h-auto max-h-[440px] object-contain mx-auto bg-white/95 rounded-lg p-2"
+                          loading="lazy"
+                        />
+                        <div className="p-2 sm:p-3 flex items-center justify-between text-center bg-[#071738]/95 border-t border-blue-500/20">
+                          <span className="text-[11px] sm:text-xs text-slate-300 font-medium">
+                            <strong>Arista Cognitive Unified Edge (CUE):</strong> VeloCloud SD-WAN + Switches Séries 710P/720XP PoE++ + Wi-Fi 7 C-460/C-430 com gestão CloudVision
+                          </span>
+                          <button
+                            onClick={() => setAristaVisualTab(null)}
+                            className="hidden sm:inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-white px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+                          >
+                            <X className="w-3 h-3" />
+                            <span>Fechar</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="relative group">
-                      <img 
-                        src="/images/arista_slide_8.png" 
-                        alt="Arquitetura Integrada Arista Networks e VeloCloud"
-                        className="w-full h-auto max-h-[440px] object-contain mx-auto bg-white/95 rounded-lg p-2"
-                        loading="lazy"
-                      />
-                      <div className="p-2 sm:p-3 text-center bg-[#071738]/95 border-t border-blue-500/20">
-                        <span className="text-[11px] sm:text-xs text-slate-300 font-medium">
-                          <strong>Arquitetura Conectada:</strong> Filiais (Branch), Campus Corporativo e Data Center integrados via SD-WAN e Arista EOS
-                        </span>
+                    ) : (
+                      <div className="relative group">
+                        <img 
+                          src="/images/arista_slide_8.png" 
+                          alt="Arquitetura Integrada Arista Networks e VeloCloud"
+                          className="w-full h-auto max-h-[440px] object-contain mx-auto bg-white/95 rounded-lg p-2"
+                          loading="lazy"
+                        />
+                        <div className="p-2 sm:p-3 flex items-center justify-between text-center bg-[#071738]/95 border-t border-blue-500/20">
+                          <span className="text-[11px] sm:text-xs text-slate-300 font-medium">
+                            <strong>Arquitetura Conectada:</strong> Filiais (Branch), Campus Corporativo e Data Center integrados via SD-WAN e Arista EOS
+                          </span>
+                          <button
+                            onClick={() => setAristaVisualTab(null)}
+                            className="hidden sm:inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-white px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-all shrink-0 cursor-pointer"
+                          >
+                            <X className="w-3 h-3" />
+                            <span>Fechar</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Rodapé e CTAs da Seção Arista */}
