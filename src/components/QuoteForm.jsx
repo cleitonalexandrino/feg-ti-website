@@ -32,7 +32,8 @@ export default function QuoteForm({ preselectedCategory, preselectedBrand, prese
       setFormData(prev => ({
         ...prev,
         categoria: preselectedBrand.includes('Zebra') ? 'Automação Comercial & Logística (Zebra)' : 
-                   preselectedBrand.includes('Aruba') ? 'Data Center & Redes (HPE Aruba)' : prev.categoria,
+                   preselectedBrand.includes('Aruba') ? 'HPE Aruba Networking (Switches, Wi-Fi 6/7, Redes)' :
+                   preselectedBrand.includes('Arista') ? 'Arista Networks (Data Center, Campus & SD-WAN VeloCloud)' : prev.categoria,
         mensagem: `Gostaria de uma cotação para produtos/soluções da marca: ${preselectedBrand}.`
       }));
     }
@@ -52,6 +53,7 @@ export default function QuoteForm({ preselectedCategory, preselectedBrand, prese
   };
 
   const categories = [
+    'Arista Networks (Data Center, Campus & SD-WAN VeloCloud)',
     'Devices & Endpoints (Laptops, Desktops, Workstations)',
     'Automação Comercial & Logística (Zebra, Coletores, Impressoras Térmicas)',
     'Data Center & Cibersegurança (Servidores, Firewalls, Storages)',

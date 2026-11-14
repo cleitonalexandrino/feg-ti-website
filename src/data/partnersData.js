@@ -2,7 +2,7 @@ export const partnerCategories = [
   { id: 'all', name: 'Todos os Fabricantes' },
   { id: 'devices', name: 'Devices', count: 5 },
   { id: 'automacao', name: 'Automação', count: 16 },
-  { id: 'datacenter', name: 'Data Center & Cybersec', count: 7 },
+  { id: 'datacenter', name: 'Data Center & Cybersec', count: 8 },
   { id: 'energia', name: 'Energia & Conectividade', count: 10 },
   { id: 'print', name: 'Print Solutions', count: 9 },
   { id: 'colaboracao', name: 'Imagem e Colaboração', count: 9 },
@@ -36,6 +36,7 @@ export const allPartners = [
   { name: 'Unitech', category: 'automacao', badge: 'Coletores', desc: 'Coletores robustos Android para centros de distribuição' },
 
   // Data Center & Cybersec
+  { name: 'Arista Networks', category: 'datacenter', badge: 'Destaque Oficial', desc: 'Líder em switches Data Center 10G a 800G, IA, Campus Cognitivo e SD-WAN VeloCloud' },
   { name: 'HPE Aruba Networking', category: 'datacenter', badge: 'Destaque Oficial', desc: 'Switches gerenciáveis, Access Points Wi-Fi 6/7 e segurança Zero Trust' },
   { name: 'HPE', category: 'datacenter', badge: 'Enterprise', desc: 'Servidores ProLiant, storages modulares e soluções de nuvem híbrida' },
   { name: 'Dell Technologies', category: 'datacenter', badge: 'Distribuidor Autorizado', desc: 'Servidores PowerEdge, Storages PowerStore e switches de data center' },

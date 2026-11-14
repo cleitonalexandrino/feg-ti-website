@@ -36,12 +36,13 @@ export const solutionsData = [
     icon: 'Shield',
     description: 'Projetos e fornecimento de infraestrutura de alta densidade para suportar bancos de dados, virtualização, inteligência artificial e proteção ativa contra invasões e ransomwares.',
     highlights: [
+      'Switches de Data Center Leaf-Spine de 10G a 800G e IA (Arista EOS)',
       'Servidores de rack e torre de última geração (Dell PowerEdge, HPE ProLiant)',
       'Storages SAN/NAS de alta capacidade e latência ultrabaixa',
       'Next-Generation Firewalls (NGFW) e prevenção avançada de ameaças',
       'Gestão ativa de vulnerabilidades e conformidade de TI (SecPod, Hillstone)'
     ],
-    partners: ['HPE', 'HPE Aruba Networking', 'Dell Technologies', 'Huawei', 'Hillstone Networks', 'SecPod', 'R-Mode'],
+    partners: ['Arista Networks', 'HPE', 'HPE Aruba Networking', 'Dell Technologies', 'Huawei', 'Hillstone Networks', 'SecPod', 'R-Mode'],
     gradient: 'from-indigo-600 to-blue-600'
   },
   {
@@ -49,14 +50,15 @@ export const solutionsData = [
     title: 'Energia & Conectividade',
     subtitle: 'Continuidade operacional ininterrupta e redes corporativas velozes',
     icon: 'Zap',
-    description: 'Proteja seus equipamentos mais valiosos contra surtos elétricos e oscilações de energia com sistemas UPS de padrão internacional, combinados a redes cabeadas e Wi-Fi de alta vazão.',
+    description: 'Proteja seus equipamentos mais valiosos contra surtos elétricos e oscilações de energia com sistemas UPS de padrão internacional, combinados a redes cabeadas, SD-WAN e Wi-Fi de alta vazão.',
     highlights: [
+      'SD-WAN VeloCloud e Switches Campus Cognitivos PoE++ até 90W (Arista)',
       'No-breaks senoidais puros e UPS industriais trifásicos modulares',
       'Switches de acesso e agregação gerenciáveis L2/L3 com portas PoE+',
       'Roteadores corporativos de borda e pontos de acesso Wi-Fi de alta densidade',
       'Racks técnicos, PDUs inteligentes e baterias seladas de longa durabilidade'
     ],
-    partners: ['APC by Schneider Electric', 'Vertiv', 'SMS Legrand', 'Intelbras', 'Ubiquiti', 'TP-Link', 'Huawei eKit', 'Delta', 'CSB', 'Mercusys'],
+    partners: ['Arista Networks (Campus & SD-WAN)', 'APC by Schneider Electric', 'Vertiv', 'SMS Legrand', 'Intelbras', 'Ubiquiti', 'TP-Link', 'Huawei eKit', 'Delta', 'CSB', 'Mercusys'],
     gradient: 'from-yellow-500 to-orange-500'
   },
   {

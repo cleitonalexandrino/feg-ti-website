@@ -62,7 +62,7 @@ export default function Footer() {
               <li><a href="#inicio" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Início</a></li>
               <li><a href="#desafios" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Dores do Gestor de TI</a></li>
               <li><a href="#solucoes" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">7 Pilares de Soluções</a></li>
-              <li><a href="#destaques" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Destaques Zebra & Aruba</a></li>
+              <li><a href="#destaques" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Arista, Zebra & Aruba</a></li>
               <li><a href="#diferenciais" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Por que a F&G TI?</a></li>
               <li><a href="#contato" className="hover:text-[#00D2FF] transition-colors py-1 inline-block">Solicitar Cotação</a></li>
             </ul>
@@ -74,6 +74,7 @@ export default function Footer() {
               Marcas Homologadas
             </h4>
             <ul className="space-y-2 text-xs">
+              <li><span className="text-[#00D2FF] font-semibold">Arista Networks</span> (Data Center, Campus & SD-WAN)</li>
               <li><span className="text-white font-medium">Zebra Technologies</span> (Coletores & Impressoras)</li>
               <li><span className="text-white font-medium">HPE Aruba Networking</span> (Switches & Wi-Fi)</li>
               <li><span className="text-white font-medium">Dell Technologies</span> (Servidores & Endpoints)</li>
