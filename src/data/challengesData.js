@@ -24,7 +24,7 @@ export const itChallenges = [
       'Vulnerabilidades não mapeadas em redes Wi-Fi e endpoints remotos'
     ],
     solutionTitle: 'Defesa em Camadas F&G TI:',
-    solutionText: 'Projetamos arquiteturas de segurança Zero Trust com Next-Generation Firewalls (Hillstone, SecPod), segurança de rede HPE Aruba e licenciamento de antivírus corporativo gerenciado na nuvem.',
+    solutionText: 'Projetamos arquiteturas de segurança Zero Trust com Next-Generation Firewalls (Hillstone Networks), segurança de rede HPE Aruba e licenciamento de antivírus corporativo gerenciado na nuvem.',
     recommendedActions: ['Next-Gen Firewalls e IPS', 'Blindagem de rede e Wi-Fi seguro', 'Antivírus corporativo centralizado']
   },
   {

@@ -40,9 +40,9 @@ export const solutionsData = [
       'Servidores de rack e torre de última geração (Dell PowerEdge, HPE ProLiant)',
       'Storages SAN/NAS de alta capacidade e latência ultrabaixa',
       'Next-Generation Firewalls (NGFW) e prevenção avançada de ameaças',
-      'Gestão ativa de vulnerabilidades e conformidade de TI (SecPod, Hillstone)'
+      'Gestão ativa de vulnerabilidades e conformidade de TI (Hillstone Networks)'
     ],
-    partners: ['Arista Networks', 'HPE', 'HPE Aruba Networking', 'Dell Technologies', 'Huawei', 'Hillstone Networks', 'SecPod', 'R-Mode'],
+    partners: ['Arista Networks', 'HPE', 'HPE Aruba Networking', 'Dell Technologies', 'Huawei', 'Hillstone Networks'],
     gradient: 'from-indigo-600 to-blue-600'
   },
   {

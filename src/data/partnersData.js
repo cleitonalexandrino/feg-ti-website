@@ -2,7 +2,7 @@ export const partnerCategories = [
   { id: 'all', name: 'Todos os Fabricantes' },
   { id: 'devices', name: 'Devices', count: 5 },
   { id: 'automacao', name: 'Automação', count: 16 },
-  { id: 'datacenter', name: 'Data Center & Cybersec', count: 8 },
+  { id: 'datacenter', name: 'Data Center & Cybersec', count: 6 },
   { id: 'energia', name: 'Energia & Conectividade', count: 10 },
   { id: 'print', name: 'Print Solutions', count: 9 },
   { id: 'colaboracao', name: 'Imagem e Colaboração', count: 9 },
@@ -42,8 +42,6 @@ export const allPartners = [
   { name: 'Dell Technologies', category: 'datacenter', badge: 'Distribuidor Autorizado', desc: 'Servidores PowerEdge, Storages PowerStore e switches de data center' },
   { name: 'Huawei', category: 'datacenter', badge: 'Telecom & Infra', desc: 'Servidores de alto desempenho, storages OceanStor e switches ópticos' },
   { name: 'Hillstone Networks', category: 'datacenter', badge: 'Cybersecurity', desc: 'Next-Generation Firewalls (NGFW) e prevenção contra intrusões' },
-  { name: 'SecPod', category: 'datacenter', badge: 'Gestão de Riscos', desc: 'Gerenciamento avançado de vulnerabilidades e conformidade cibernética' },
-  { name: 'R-Mode', category: 'datacenter', badge: 'Cyber Defense', desc: 'Segurança preditiva e blindagem de infraestruturas críticas' },
 
   // Energia & Conectividade
   { name: 'APC by Schneider Electric', category: 'energia', badge: 'Líder Mundial', desc: 'No-breaks senoidais Smart-UPS, PDUs de rack e infraestrutura crítica' },

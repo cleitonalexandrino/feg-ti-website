@@ -17,12 +17,19 @@ const DEFAULT_SETTINGS = {
   adminPassword: 'admin'
 };
 
+const cleanPartners = (list) => (list || []).filter(p => p.name !== 'SecPod' && p.name !== 'R-Mode');
+const cleanSolutions = (list) => (list || []).map(s => ({
+  ...s,
+  highlights: (s.highlights || []).map(h => h.replace(/SecPod,?\s*/g, '').replace(/\(\s*,\s*/g, '(').replace(/\(\s*\)/g, '')),
+  partners: (s.partners || []).filter(p => !p.includes('SecPod') && !p.includes('R-Mode'))
+}));
+
 export function AdminProvider({ children }) {
   // Load state from localStorage or use defaults
   const [partners, setPartners] = useState(() => {
     try {
-      const saved = localStorage.getItem('fgti_partners');
-      return saved ? JSON.parse(saved) : initialPartners;
+      const saved = localStorage.getItem('fgti_partners_v3');
+      return saved ? cleanPartners(JSON.parse(saved)) : initialPartners;
     } catch {
       return initialPartners;
     }
@@ -30,8 +37,8 @@ export function AdminProvider({ children }) {
 
   const [solutions, setSolutions] = useState(() => {
     try {
-      const saved = localStorage.getItem('fgti_solutions');
-      return saved ? JSON.parse(saved) : initialSolutions;
+      const saved = localStorage.getItem('fgti_solutions_v3');
+      return saved ? cleanSolutions(JSON.parse(saved)) : initialSolutions;
     } catch {
       return initialSolutions;
     }
@@ -54,7 +61,7 @@ export function AdminProvider({ children }) {
   // Persist to localStorage whenever state changes
   useEffect(() => {
     try {
-      localStorage.setItem('fgti_partners', JSON.stringify(partners));
+      localStorage.setItem('fgti_partners_v3', JSON.stringify(partners));
     } catch (e) {
       console.error('Error saving partners to localStorage', e);
     }
@@ -62,7 +69,7 @@ export function AdminProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('fgti_solutions', JSON.stringify(solutions));
+      localStorage.setItem('fgti_solutions_v3', JSON.stringify(solutions));
     } catch (e) {
       console.error('Error saving solutions to localStorage', e);
     }
